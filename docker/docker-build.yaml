@@ -3,7 +3,7 @@
 # File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 15-08-2021 03:20:36
+# Last Modified: 15-08-2021 03:31:20
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -23,17 +23,17 @@
 version: "2"
 
 services:
-  build:
+  main:
     image: ${IMAGE}:${TAG}
     build:
       context: context
       dockerfile: Dockerfile
   major:
-    extends: build
+    extends: main
     image: ${IMAGE}:${MAJOR}
   minor:
-    extends: build
+    extends: main
     image: ${IMAGE}:${MAJOR}.${MINOR}
   patch:
-    extends: build
+    extends: main
     image: ${IMAGE}:${MAJOR}.${MINOR}.${PATCH}
