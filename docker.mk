@@ -3,7 +3,7 @@
 # File Created: 24-06-2021 04:03:49
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 15-08-2021 03:47:00
+# Last Modified: 15-08-2021 03:49:44
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -69,7 +69,6 @@ all: build
 
 .PHONY: build
 build:
-	@echo b_TAG=$(TAG)
 	@docker-compose -f docker-build.yaml build $(ARGS)
 
 .PHONY: pull

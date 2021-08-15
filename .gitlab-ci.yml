@@ -7,11 +7,10 @@ docker-build:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - |
-      ARGS=
-      TAG=
+      TAG=latest
       if [[ "$CI_COMMIT_BRANCH" != "$CI_DEFAULT_BRANCH" ]]; then
         TAG=$CI_COMMIT_REF_SLUG
         ARGS=main
       fi
-    - make -s build ARGS="$ARGS"
-    - make -s push ARGS="$ARGS"
+    - make -s build ARGS="$ARGS" TAG="$TAG"
+    - make -s push ARGS="$ARGS" TAG="$TAG"
