@@ -4,7 +4,7 @@ services:
   build:
     image: ${IMAGE}:${TAG}
     build:
-      context: latest
+      context: context
       dockerfile: Dockerfile
   major:
     extends: build

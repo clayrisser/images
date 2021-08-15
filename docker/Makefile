@@ -1,9 +1,9 @@
-NAME ?= ci-images-docker
+NAME ?= ci-images/docker
 REGISTRY ?= registry.gitlab.com/silicon-hills/community
 VERSION ?= 0.0.1
 IMAGE := $(REGISTRY)/$(NAME)
 
-include docker.mk
+include ../docker.mk
 
 .PHONY: postgres
 postgres:

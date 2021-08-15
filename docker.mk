@@ -25,7 +25,7 @@ MAJOR := $(shell echo $(VERSION) | cut -d. -f1)
 MINOR := $(shell echo $(VERSION) | cut -d. -f2)
 PATCH := $(shell echo $(VERSION) | cut -d. -f3)
 
-export PLATFORM := $(shell node -e "process.stdout.write(process.platform)")
+export PLATFORM := $(shell node -e "process.stdout.write(process.platform)" 2>/dev/null || echo linux)
 export NIX_ENV := $(shell which sed | grep -qE "^/nix/store" && echo true|| echo false)
 ifeq ($(PLATFORM),win32)
 	BANG := !
