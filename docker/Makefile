@@ -3,7 +3,7 @@
 # File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 15-08-2021 03:20:57
+# Last Modified: 15-08-2021 03:32:53
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -26,22 +26,6 @@ VERSION ?= 0.0.1
 IMAGE := $(REGISTRY)/$(NAME)
 
 include ../docker.mk
-
-.PHONY: postgres
-postgres:
-	@docker-compose up $(ARGS) postgres
-
-.PHONY: keycloak
-keycloak:
-	@docker-compose up $(ARGS) keycloak
-
-.PHONY: redis
-redis:
-	@docker-compose up $(ARGS) redis
-
-.PHONY: deps
-deps:
-	@docker-compose up $(ARGS) deps
 
 .PHONY: ~%
 ~%:
