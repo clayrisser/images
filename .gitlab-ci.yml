@@ -12,5 +12,5 @@ docker-build:
         TAG=$CI_COMMIT_REF_SLUG
         ARGS=main
       fi
-    - make -s build $ARGS
-    - make -s push $ARGS
+    - make -s build ARGS="$ARGS"
+    - make -s push ARGS="$ARGS"
