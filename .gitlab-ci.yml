@@ -8,12 +8,9 @@ docker-build:
   script:
     - |
       ARGS=
-      if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
-        echo "Running on default branch '$CI_DEFAULT_BRANCH': tag = latest"
-      else
+      if [[ "$CI_COMMIT_BRANCH" != "$CI_DEFAULT_BRANCH" ]]; then
         TAG=$CI_COMMIT_REF_SLUG
         ARGS=main
-        echo "Running on branch '$CI_COMMIT_BRANCH': tag = $TAG"
       fi
     - make -s build $ARGS
     - make -s push $ARGS
