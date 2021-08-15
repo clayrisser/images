@@ -8,9 +8,11 @@ docker-build:
   script:
     - |
       ARGS=
+      TAG=
       if [[ "$CI_COMMIT_BRANCH" != "$CI_DEFAULT_BRANCH" ]]; then
         TAG=$CI_COMMIT_REF_SLUG
         ARGS=main
       fi
+    - echo TAG=$TAG
     - make -s build ARGS="$ARGS"
     - make -s push ARGS="$ARGS"
