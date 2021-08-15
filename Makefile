@@ -3,7 +3,7 @@
 # File Created: 15-08-2021 02:20:14
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 15-08-2021 03:08:35
+# Last Modified: 15-08-2021 03:46:43
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,6 +20,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+.EXPORT_ALL_VARIABLES:
+
 all: build
 
 build:
@@ -30,3 +32,6 @@ pull:
 
 push:
 	@$(MAKE) -s -C docker push ARGS=$(ARGS)
+
+up:
+	@$(MAKE) -s -C docker up ARGS=$(ARGS)

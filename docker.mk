@@ -3,7 +3,7 @@
 # File Created: 24-06-2021 04:03:49
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 15-08-2021 03:08:40
+# Last Modified: 15-08-2021 03:47:00
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -21,6 +21,7 @@
 # limitations under the License.
 
 TAG ?= latest
+CONTAINER_NAME ?= $(shell echo $(NAME) | $(SED) 's|\/|_|g')
 MAJOR := $(shell echo $(VERSION) | cut -d. -f1)
 MINOR := $(shell echo $(VERSION) | cut -d. -f2)
 PATCH := $(shell echo $(VERSION) | cut -d. -f3)
@@ -68,6 +69,7 @@ all: build
 
 .PHONY: build
 build:
+	@echo b_TAG=$(TAG)
 	@docker-compose -f docker-build.yaml build $(ARGS)
 
 .PHONY: pull
