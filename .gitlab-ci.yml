@@ -17,7 +17,3 @@ docker-build:
       fi
     - make -s build $ARGS
     - make -s push $ARGS
-  rules:
-    - if: $CI_COMMIT_BRANCH
-      exists:
-        - Dockerfile
