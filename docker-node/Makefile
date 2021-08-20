@@ -1,9 +1,9 @@
-# File: /Makefile
+# File: /docker-node/Makefile
 # Project: ci-images
-# File Created: 15-08-2021 02:20:14
+# File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 20-08-2021 15:03:30
+# Last Modified: 20-08-2021 15:05:48
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,16 +20,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-all: build
+NAME ?= ci-images/docker-node
+REGISTRY ?= registry.gitlab.com/silicon-hills/community
+VERSION ?= 0.0.1
+IMAGE := $(REGISTRY)/$(NAME)
 
-build:
-	@$(MAKE) -s -C docker build ARGS=$(ARGS)
-	@$(MAKE) -s -C docker-node build ARGS=$(ARGS)
+include ../docker.mk
 
-pull:
-	@$(MAKE) -s -C docker pull ARGS=$(ARGS)
-	@$(MAKE) -s -C docker-node pull ARGS=$(ARGS)
+.PHONY: ~%
+~%:
+	@$(MAKE) -s $(shell echo $@ | $(SED) 's/^~//g') ARGS="-d"
 
-push:
-	@$(MAKE) -s -C docker push ARGS=$(ARGS)
-	@$(MAKE) -s -C docker-node push ARGS=$(ARGS)
+.PHONY: %
+%: ;

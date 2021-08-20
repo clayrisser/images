@@ -1,9 +1,9 @@
-# File: /Makefile
+# File: /docker-node/context/Dockerfile
 # Project: ci-images
-# File Created: 15-08-2021 02:20:14
+# File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 20-08-2021 15:03:30
+# Last Modified: 20-08-2021 15:05:35
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,16 +20,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-all: build
+FROM docker:19.03
 
-build:
-	@$(MAKE) -s -C docker build ARGS=$(ARGS)
-	@$(MAKE) -s -C docker-node build ARGS=$(ARGS)
+RUN apk add --no-cache \
+    docker-compose \
+    git \
+    jq \
+    make \
+    nodejs \
+    npm
 
-pull:
-	@$(MAKE) -s -C docker pull ARGS=$(ARGS)
-	@$(MAKE) -s -C docker-node pull ARGS=$(ARGS)
-
-push:
-	@$(MAKE) -s -C docker push ARGS=$(ARGS)
-	@$(MAKE) -s -C docker-node push ARGS=$(ARGS)
+RUN npm install -g \
+    yarn \
+    pnpm
