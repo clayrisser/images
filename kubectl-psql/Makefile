@@ -1,9 +1,9 @@
-# File: /Makefile
+# File: /kubectl-psql/Makefile
 # Project: ci-images
-# File Created: 15-08-2021 02:20:14
+# File Created: 26-08-2021 00:36:29
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 26-08-2021 00:41:26
+# Last Modified: 26-08-2021 00:40:08
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,19 +20,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-all: build
+NAME ?= ci-images/kubectl-psql
+REGISTRY ?= registry.gitlab.com/silicon-hills/community
+VERSION ?= 0.0.1
+IMAGE := $(REGISTRY)/$(NAME)
 
-build:
-	@$(MAKE) -s -C docker build ARGS=$(ARGS)
-	@$(MAKE) -s -C docker-node build ARGS=$(ARGS)
-	@$(MAKE) -s -C kubectl-psql build ARGS=$(ARGS)
+include ../docker.mk
 
-pull:
-	@$(MAKE) -s -C docker pull ARGS=$(ARGS)
-	@$(MAKE) -s -C docker-node pull ARGS=$(ARGS)
-	@$(MAKE) -s -C kubectl-psql pull ARGS=$(ARGS)
+.PHONY: ~%
+~%:
+	@$(MAKE) -s $(shell echo $@ | $(SED) 's/^~//g') ARGS="-d"
 
-push:
-	@$(MAKE) -s -C docker push ARGS=$(ARGS)
-	@$(MAKE) -s -C docker-node push ARGS=$(ARGS)
-	@$(MAKE) -s -C kubectl-psql push ARGS=$(ARGS)
+.PHONY: %
+%: ;

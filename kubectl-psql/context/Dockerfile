@@ -1,9 +1,9 @@
-# File: /Makefile
+# File: /kubectl-psql/context/Dockerfile
 # Project: ci-images
-# File Created: 15-08-2021 02:20:14
+# File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 26-08-2021 00:41:26
+# Last Modified: 26-08-2021 00:44:26
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,19 +20,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-all: build
+FROM alpine:3.14.1
 
-build:
-	@$(MAKE) -s -C docker build ARGS=$(ARGS)
-	@$(MAKE) -s -C docker-node build ARGS=$(ARGS)
-	@$(MAKE) -s -C kubectl-psql build ARGS=$(ARGS)
+RUN apk add --no-cache \
+    curl \
+    postgresql-client
 
-pull:
-	@$(MAKE) -s -C docker pull ARGS=$(ARGS)
-	@$(MAKE) -s -C docker-node pull ARGS=$(ARGS)
-	@$(MAKE) -s -C kubectl-psql pull ARGS=$(ARGS)
-
-push:
-	@$(MAKE) -s -C docker push ARGS=$(ARGS)
-	@$(MAKE) -s -C docker-node push ARGS=$(ARGS)
-	@$(MAKE) -s -C kubectl-psql push ARGS=$(ARGS)
+RUN curl -LO https://dl.k8s.io/release/v1.20.0/bin/linux/amd64/kubectl && \
+    install kubectl /usr/local/bin && \
+    ln -s /usr/local/bin/kubectl /usr/local/bin/k
