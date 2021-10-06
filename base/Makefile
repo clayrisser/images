@@ -1,9 +1,9 @@
-# File: /Makefile
+# File: /base/Makefile
 # Project: ci-images
-# File Created: 15-08-2021 02:20:14
+# File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 06-10-2021 14:32:34
+# Last Modified: 06-10-2021 14:44:17
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,11 +20,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-build-%:
-	@$(MAKE) -s -C $* build ARGS=$(ARGS)
+export NAME ?= ci-images/base
+export REGISTRY ?= registry.gitlab.com/silicon-hills/community
+export VERSION ?= 0.0.1
+export IMAGE := $(REGISTRY)/$(NAME)
 
-pull-%:
-	@$(MAKE) -s -C $* pull ARGS=$(ARGS)
+include ../mkpm.mk
+ifneq (,$(MKPM))
+-include ../docker.mk
 
-push-%:
-	@$(MAKE) -s -C $* push ARGS=$(ARGS)
+.DEFAULT_GOAL := build
+
+endif
