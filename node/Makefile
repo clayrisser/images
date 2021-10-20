@@ -1,9 +1,9 @@
-# File: /docker/context/Dockerfile
+# File: /node/Makefile
 # Project: ci-images
 # File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 20-10-2021 01:09:34
+# Last Modified: 20-10-2021 15:39:30
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,11 +20,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM docker:19.03
+NAME ?= ci-images/node
+REGISTRY ?= registry.gitlab.com/silicon-hills/community
+VERSION ?= 0.0.1
+IMAGE := $(REGISTRY)/$(NAME)
 
-RUN apk add --no-cache \
-    docker-compose \
-    git \
-    git-lfs \
-    jq \
-    make
+include ../docker.mk
+
+.PHONY: ~%
+~%:
+	@$(MAKE) -s $(shell echo $@ | $(SED) 's/^~//g') ARGS="-d"
+
+.PHONY: %
+%: ;
