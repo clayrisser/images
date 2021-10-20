@@ -3,7 +3,7 @@
 # File Created: 15-08-2021 02:20:14
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 20-08-2021 15:03:30
+# Last Modified: 06-10-2021 14:32:34
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,16 +20,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-all: build
+build-%:
+	@$(MAKE) -s -C $* build ARGS=$(ARGS)
 
-build:
-	@$(MAKE) -s -C docker build ARGS=$(ARGS)
-	@$(MAKE) -s -C docker-node build ARGS=$(ARGS)
+pull-%:
+	@$(MAKE) -s -C $* pull ARGS=$(ARGS)
 
-pull:
-	@$(MAKE) -s -C docker pull ARGS=$(ARGS)
-	@$(MAKE) -s -C docker-node pull ARGS=$(ARGS)
-
-push:
-	@$(MAKE) -s -C docker push ARGS=$(ARGS)
-	@$(MAKE) -s -C docker-node push ARGS=$(ARGS)
+push-%:
+	@$(MAKE) -s -C $* push ARGS=$(ARGS)
