@@ -3,7 +3,7 @@
 # File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 15-08-2021 03:07:17
+# Last Modified: 20-10-2021 01:02:02
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -25,5 +25,6 @@ FROM docker:19.03
 RUN apk add --no-cache \
     docker-compose \
     git \
+    git-lfs \
     jq \
     make
