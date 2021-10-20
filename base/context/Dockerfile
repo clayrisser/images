@@ -1,9 +1,9 @@
-# File: /docker-node/context/Dockerfile
+# File: /base/context/Dockerfile
 # Project: ci-images
-# File Created: 15-08-2021 02:16:42
+# File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 20-10-2021 15:53:54
+# Last Modified: 06-10-2021 14:30:57
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,17 +20,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM docker:19.03
+FROM alpine:3.13.6
 
 RUN apk add --no-cache \
-    docker-compose \
     git \
-    git-lfs \
     jq \
-    make \
-    nodejs \
-    npm
-
-RUN npm install -g \
-    yarn \
-    pnpm
+    make

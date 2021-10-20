@@ -1,9 +1,9 @@
-# File: /docker-node/context/Dockerfile
+# File: /base/Makefile
 # Project: ci-images
-# File Created: 15-08-2021 02:16:42
+# File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 20-10-2021 15:53:54
+# Last Modified: 06-10-2021 14:44:17
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,17 +20,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM docker:19.03
+export NAME ?= ci-images/base
+export REGISTRY ?= registry.gitlab.com/silicon-hills/community
+export VERSION ?= 0.0.1
+export IMAGE := $(REGISTRY)/$(NAME)
 
-RUN apk add --no-cache \
-    docker-compose \
-    git \
-    git-lfs \
-    jq \
-    make \
-    nodejs \
-    npm
+include ../mkpm.mk
+ifneq (,$(MKPM))
+-include ../docker.mk
 
-RUN npm install -g \
-    yarn \
-    pnpm
+.DEFAULT_GOAL := build
+
+endif

@@ -1,5 +1,13 @@
 {
-  "cSpell.words": ["build", "docker", "kubectl", "psql", "risser", "yaml"],
+  "cSpell.words": [
+    "build",
+    "dind",
+    "docker",
+    "kubectl",
+    "psql",
+    "risser",
+    "yaml"
+  ],
   "psi-header.variables": [["projectCreationYear", "2021"]],
   "psi-header.config": {
     "author": "Clay Risser",
