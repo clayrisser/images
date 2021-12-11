@@ -32,7 +32,8 @@ RUN apk add --no-cache \
     git \
     git-lfs \
     make \
-    openssl
+    openssl \
+    patch
 
 RUN curl -LO https://dl.k8s.io/release/v1.20.0/bin/linux/amd64/kubectl && \
     install kubectl /usr/local/bin && \
