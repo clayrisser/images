@@ -1,9 +1,9 @@
-# File: /Makefile
+# File: /kubectl-psql/docker-compose.yaml
 # Project: ci-images
-# File Created: 15-08-2021 02:20:14
+# File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 11-12-2021 03:00:46
+# Last Modified: 26-08-2021 00:40:39
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,16 +20,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include mkpm.mk
-ifneq (,$(MKPM_READY))
+version: "3.7"
 
-build-%:
-	@$(MAKE) -s -C $* build ARGS=$(ARGS)
-
-pull-%:
-	@$(MAKE) -s -C $* pull ARGS=$(ARGS)
-
-push-%:
-	@$(MAKE) -s -C $* push ARGS=$(ARGS)
-
-endif
+services:
+  docker:
+    container_name: ${CONTAINER_NAME}
+    image: ${IMAGE}:${TAG}
+    tty: true
+    stdin_open: true
+    entrypoint: docker
+    command: ["-v"]
