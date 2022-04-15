@@ -3,7 +3,7 @@
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 15-04-2022 07:05:09
+# Last Modified: 15-04-2022 07:54:04
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -30,4 +30,5 @@ RUN apk add --no-cache \
     jq \
     make \
     openssl \
-    patch
+    patch \
+    yq

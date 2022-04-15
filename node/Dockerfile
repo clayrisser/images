@@ -3,7 +3,7 @@
 # File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 15-04-2022 07:05:29
+# Last Modified: 15-04-2022 07:54:20
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -32,7 +32,8 @@ RUN apk add --no-cache \
     make \
     openssl \
     patch \
-    python3
+    python3 \
+    yq
 
 RUN npm install -g \
     pnpm
