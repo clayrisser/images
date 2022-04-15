@@ -3,7 +3,7 @@
 # File Created: 15-08-2021 02:20:14
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 15-04-2022 07:49:28
+# Last Modified: 15-04-2022 08:16:25
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -27,6 +27,7 @@ include shared.mk
 IMAGES = \
 	base \
 	node \
+	podman \
 	docker \
 	docker-node \
 	kube-commands \

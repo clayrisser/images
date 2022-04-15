@@ -1,9 +1,9 @@
-# File: /base/Dockerfile
+# File: /podman/Makefile
 # Project: ci-images
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 15-04-2022 08:18:12
+# Last Modified: 15-04-2022 08:16:09
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,15 +20,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM alpine:3.15.4
+include ../mkpm.mk
+ifneq (,$(MKPM_READY))
+include $(MKPM)/gnu
+include $(PROJECT_ROOT)/shared.mk
 
-RUN apk add --no-cache \
-    bash \
-    curl \
-    git \
-    git-lfs \
-    jq \
-    make \
-    openssl \
-    patch \
-    yq
+export NAME ?= podman
+export VERSION ?= 0.0.1
+export IMAGE := $(REGISTRY)/$(NAME)
+
+include $(MKPM)/docker
+
+endif

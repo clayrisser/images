@@ -1,9 +1,9 @@
-# File: /base/Dockerfile
+# File: /podman/Dockerfile
 # Project: ci-images
-# File Created: 06-10-2021 14:23:56
+# File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 15-04-2022 08:18:12
+# Last Modified: 15-04-2022 08:21:46
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,15 +20,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM alpine:3.15.4
+FROM registry.gitlab.com/risserlabs/community/images/base:0.0.1
 
 RUN apk add --no-cache \
-    bash \
-    curl \
-    git \
-    git-lfs \
-    jq \
-    make \
-    openssl \
-    patch \
-    yq
+    podman \
+    python3 \
+    py-pip
+
+RUN pip install \
+    podman-compose
