@@ -1,9 +1,9 @@
 # File: /docker-node/Makefile
 # Project: ci-images
-# File Created: 15-08-2021 02:16:42
+# File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 20-08-2021 15:05:48
+# Last Modified: 15-04-2022 06:50:20
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,16 +20,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-NAME ?= ci-images/docker-node
-REGISTRY ?= registry.gitlab.com/silicon-hills/community
-VERSION ?= 0.0.1
-IMAGE := $(REGISTRY)/$(NAME)
+include ../mkpm.mk
+ifneq (,$(MKPM_READY))
+include $(MKPM)/gnu
+include $(PROJECT_ROOT)/shared.mk
 
-include ../docker.mk
+export NAME ?= docker-node
+export VERSION ?= 16.14.2
+export IMAGE := $(REGISTRY)/$(NAME)
 
-.PHONY: ~%
-~%:
-	@$(MAKE) -s $(shell echo $@ | $(SED) 's/^~//g') ARGS="-d"
+include $(MKPM)/docker
 
-.PHONY: %
-%: ;
+endif

@@ -1,12 +1,12 @@
-# File: /docker-node/docker-compose.yaml
-# Project: ci-images
-# File Created: 15-08-2021 02:16:42
+# File: /shared.mk
+# Project: images
+# File Created: 15-04-2022 06:16:26
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 20-08-2021 15:05:45
+# Last Modified: 15-04-2022 06:18:27
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
-# Silicon Hills LLC (c) Copyright 2021
+# Silicon Hills LLC (c) Copyright 2021 - 2022
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,13 +20,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-version: "3.7"
-
-services:
-  docker:
-    container_name: ${CONTAINER_NAME}
-    image: ${IMAGE}:${TAG}
-    tty: true
-    stdin_open: true
-    entrypoint: docker
-    command: ["-v"]
+export REGISTRY ?= registry.gitlab.com/risserlabs/community/images
+export DOCKER_FLAVOR ?= docker

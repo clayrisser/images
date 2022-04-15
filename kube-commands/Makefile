@@ -1,9 +1,9 @@
 # File: /kube-commands/Makefile
 # Project: ci-images
-# File Created: 26-08-2021 00:36:29
+# File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 11-12-2021 03:15:47
+# Last Modified: 15-04-2022 06:22:03
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -23,14 +23,12 @@
 include ../mkpm.mk
 ifneq (,$(MKPM_READY))
 include $(MKPM)/gnu
+include $(PROJECT_ROOT)/shared.mk
 
-# export DOCKER_COMPOSE ?= docker-compose
+export NAME ?= kube-commands
+export VERSION ?= 0.0.1
+export IMAGE := $(REGISTRY)/$(NAME)
 
-export CONTEXT := .
-export NAME := ci-images/kube-commands
-export REGISTRY := registry.gitlab.com/silicon-hills/community
-export VERSION := 0.0.1
-
--include $(MKPM)/docker
+include $(MKPM)/docker
 
 endif

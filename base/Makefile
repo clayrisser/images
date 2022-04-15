@@ -3,7 +3,7 @@
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 06-10-2021 14:44:17
+# Last Modified: 15-04-2022 06:17:33
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,15 +20,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-export NAME ?= ci-images/base
-export REGISTRY ?= registry.gitlab.com/silicon-hills/community
+include ../mkpm.mk
+ifneq (,$(MKPM_READY))
+include $(MKPM)/gnu
+include $(PROJECT_ROOT)/shared.mk
+
+export DOCKER_FLAVOR ?= docker
+export NAME ?= base
 export VERSION ?= 0.0.1
 export IMAGE := $(REGISTRY)/$(NAME)
 
-include ../mkpm.mk
-ifneq (,$(MKPM))
--include ../docker.mk
-
-.DEFAULT_GOAL := build
+include $(MKPM)/docker
 
 endif

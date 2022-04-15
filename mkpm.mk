@@ -1,12 +1,12 @@
 # File: /mkpm.mk
-# Project: mkpm
-# File Created: 26-09-2021 00:44:57
-# Author: Clay Risser
+# Project: images
+# File Created: 15-04-2022 06:10:34
+# Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 11-12-2021 02:56:56
+# Last Modified: 15-04-2022 06:11:48
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
-# BitSpur Inc (c) Copyright 2021
+# Silicon Hills LLC (c) Copyright 2021 - 2022
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,14 +21,14 @@
 # limitations under the License.
 
 MKPM_PACKAGES := \
-	docker=0.0.8 \
+	docker=0.0.15 \
 	gnu=0.0.3
 
 MKPM_REPOS := \
-	https://gitlab.com/bitspur/community/mkpm-stable.git
+	https://gitlab.com/risserlabs/community/mkpm-stable.git
 
 ############# MKPM BOOTSTRAP SCRIPT BEGIN #############
-MKPM_BOOTSTRAP := https://bitspur.gitlab.io/community/mkpm/bootstrap.mk
+MKPM_BOOTSTRAP := https://risserlabs.gitlab.io/community/mkpm/bootstrap.mk
 export PROJECT_ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 NULL := /dev/null
 TRUE := true

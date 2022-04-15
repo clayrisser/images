@@ -1,3 +1,3 @@
-# ci-images
+# images
 
-> docker images used in ci pipelines
+> community docker images

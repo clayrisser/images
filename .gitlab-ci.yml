@@ -1,5 +1,5 @@
 docker-build:
-  image: registry.gitlab.com/silicon-hills/community/ci-images/docker:0.0.1
+  image: registry.gitlab.com/risserlabs/community/images/docker:0.0.1
   stage: build
   services:
     - docker:dind

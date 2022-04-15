@@ -3,7 +3,7 @@
 # File Created: 15-08-2021 02:20:14
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 11-12-2021 03:00:46
+# Last Modified: 15-04-2022 07:46:50
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -22,14 +22,32 @@
 
 include mkpm.mk
 ifneq (,$(MKPM_READY))
+include shared.mk
 
-build-%:
-	@$(MAKE) -s -C $* build ARGS=$(ARGS)
+IMAGES = \
+	base \
+	node \
+	docker \
+	docker-node \
+	kube-commands \
+	kube-commands-psql
 
-pull-%:
-	@$(MAKE) -s -C $* pull ARGS=$(ARGS)
+.PHONY: build
+build: | $(patsubst %,%/build,$(IMAGES))
 
-push-%:
-	@$(MAKE) -s -C $* push ARGS=$(ARGS)
+.PHONY: push
+push: | $(patsubst %,%/push,$(IMAGES))
+
+.PHONY: pull
+pull: | $(patsubst %,%/pull,$(IMAGES))
+
+%/build:
+	@$(MAKE) -sC $* build ARGS=$(ARGS)
+
+%/pull:
+	@$(MAKE) -sC $* pull ARGS=$(ARGS)
+
+%/push:
+	@$(MAKE) -sC $* push ARGS=$(ARGS)
 
 endif

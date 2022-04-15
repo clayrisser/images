@@ -3,7 +3,7 @@
 # File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 11-12-2021 03:12:48
+# Last Modified: 15-04-2022 07:06:05
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,20 +20,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM alpine:3.14.1
+FROM registry.gitlab.com/risserlabs/community/images/base:0.0.1
 
 WORKDIR /tmp
 
 ENV PATH="${PATH}:/root/.krew/bin"
-
-RUN apk add --no-cache \
-    bash \
-    curl \
-    git \
-    git-lfs \
-    make \
-    openssl \
-    patch
 
 RUN curl -LO https://dl.k8s.io/release/v1.20.0/bin/linux/amd64/kubectl && \
     install kubectl /usr/local/bin && \

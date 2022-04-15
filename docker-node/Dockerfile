@@ -1,9 +1,9 @@
-# File: /docker/docker-build.yaml
+# File: /docker-node/Dockerfile
 # Project: ci-images
 # File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 15-08-2021 03:31:20
+# Last Modified: 15-04-2022 06:49:26
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,20 +20,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-version: "2"
+FROM registry.gitlab.com/risserlabs/community/images/node:16.14.2
 
-services:
-  main:
-    image: ${IMAGE}:${TAG}
-    build:
-      context: context
-      dockerfile: Dockerfile
-  major:
-    extends: main
-    image: ${IMAGE}:${MAJOR}
-  minor:
-    extends: main
-    image: ${IMAGE}:${MAJOR}.${MINOR}
-  patch:
-    extends: main
-    image: ${IMAGE}:${MAJOR}.${MINOR}.${PATCH}
+RUN apk add --no-cache \
+    docker-compose

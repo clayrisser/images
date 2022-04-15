@@ -1,9 +1,9 @@
-# File: /base/docker-compose.yaml
+# File: /node/Dockerfile
 # Project: ci-images
-# File Created: 06-10-2021 14:23:56
+# File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 06-10-2021 14:30:50
+# Last Modified: 15-04-2022 07:05:29
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,13 +20,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-version: "3.7"
+FROM node:16.14.2-alpine3.15
 
-services:
-  docker:
-    container_name: ${CONTAINER_NAME}
-    image: ${IMAGE}:${TAG}
-    tty: true
-    stdin_open: true
-    entrypoint: docker
-    command: ["-v"]
+RUN apk add --no-cache \
+    bash \
+    build-base \
+    curl \
+    git \
+    git-lfs \
+    jq \
+    make \
+    openssl \
+    patch \
+    python3
+
+RUN npm install -g \
+    pnpm

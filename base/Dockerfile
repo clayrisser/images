@@ -1,9 +1,9 @@
-# File: /kubectl-psql/docker-build.yaml
+# File: /base/Dockerfile
 # Project: ci-images
-# File Created: 15-08-2021 02:16:42
+# File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 26-08-2021 00:40:18
+# Last Modified: 15-04-2022 07:05:09
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,20 +20,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-version: "2"
+FROM alpine:3.13.6
 
-services:
-  main:
-    image: ${IMAGE}:${TAG}
-    build:
-      context: context
-      dockerfile: Dockerfile
-  major:
-    extends: main
-    image: ${IMAGE}:${MAJOR}
-  minor:
-    extends: main
-    image: ${IMAGE}:${MAJOR}.${MINOR}
-  patch:
-    extends: main
-    image: ${IMAGE}:${MAJOR}.${MINOR}.${PATCH}
+RUN apk add --no-cache \
+    bash \
+    curl \
+    git \
+    git-lfs \
+    jq \
+    make \
+    openssl \
+    patch

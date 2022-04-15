@@ -1,9 +1,9 @@
-# File: /kubectl-psql/context/Dockerfile
+# File: /kube-commands-psql/Dockerfile
 # Project: ci-images
 # File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 26-08-2021 00:44:26
+# Last Modified: 15-04-2022 07:36:12
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,12 +20,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM alpine:3.14.1
+FROM registry.gitlab.com/risserlabs/community/images/base:0.0.1
 
 RUN apk add --no-cache \
-    curl \
     postgresql-client
-
-RUN curl -LO https://dl.k8s.io/release/v1.20.0/bin/linux/amd64/kubectl && \
-    install kubectl /usr/local/bin && \
-    ln -s /usr/local/bin/kubectl /usr/local/bin/k
