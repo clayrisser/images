@@ -3,7 +3,7 @@
 # File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 15-04-2022 06:49:26
+# Last Modified: 15-04-2022 07:50:08
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -23,4 +23,5 @@
 FROM registry.gitlab.com/risserlabs/community/images/node:16.14.2
 
 RUN apk add --no-cache \
+    docker \
     docker-compose

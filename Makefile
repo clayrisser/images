@@ -3,7 +3,7 @@
 # File Created: 15-08-2021 02:20:14
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 15-04-2022 07:46:50
+# Last Modified: 15-04-2022 07:49:28
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -49,5 +49,8 @@ pull: | $(patsubst %,%/pull,$(IMAGES))
 
 %/push:
 	@$(MAKE) -sC $* push ARGS=$(ARGS)
+
+%/shell:
+	@$(MAKE) -sC $* shell ARGS=$(ARGS)
 
 endif
