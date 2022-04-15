@@ -3,7 +3,7 @@
 # File Created: 15-04-2022 06:10:34
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 15-04-2022 06:11:48
+# Last Modified: 15-04-2022 08:11:38
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021 - 2022
@@ -21,7 +21,7 @@
 # limitations under the License.
 
 MKPM_PACKAGES := \
-	docker=0.0.15 \
+	docker=0.0.16 \
 	gnu=0.0.3
 
 MKPM_REPOS := \
