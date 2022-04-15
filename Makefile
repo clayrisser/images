@@ -3,7 +3,7 @@
 # File Created: 15-08-2021 02:20:14
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 15-04-2022 08:16:25
+# Last Modified: 15-04-2022 08:28:43
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -26,12 +26,13 @@ include shared.mk
 
 IMAGES = \
 	base \
-	node \
-	podman \
 	docker \
 	docker-node \
 	kube-commands \
-	kube-commands-psql
+	kube-commands-psql \
+	node \
+	podman \
+	terraform
 
 .PHONY: build
 build: | $(patsubst %,%/build,$(IMAGES))

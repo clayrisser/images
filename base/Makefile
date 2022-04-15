@@ -3,7 +3,7 @@
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 15-04-2022 06:17:33
+# Last Modified: 15-04-2022 08:30:10
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -25,10 +25,8 @@ ifneq (,$(MKPM_READY))
 include $(MKPM)/gnu
 include $(PROJECT_ROOT)/shared.mk
 
-export DOCKER_FLAVOR ?= docker
 export NAME ?= base
 export VERSION ?= 0.0.1
-export IMAGE := $(REGISTRY)/$(NAME)
 
 include $(MKPM)/docker
 

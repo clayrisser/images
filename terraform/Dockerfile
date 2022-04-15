@@ -1,9 +1,9 @@
-# File: /docker-node/Makefile
+# File: /terraform/Dockerfile
 # Project: ci-images
-# File Created: 06-10-2021 14:23:56
+# File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 15-04-2022 08:30:16
+# Last Modified: 15-04-2022 08:29:04
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,14 +20,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include ../mkpm.mk
-ifneq (,$(MKPM_READY))
-include $(MKPM)/gnu
-include $(PROJECT_ROOT)/shared.mk
+FROM registry.gitlab.com/risserlabs/community/images/base:0.0.1
 
-export NAME ?= docker-node
-export VERSION ?= 16.14.2
-
-include $(MKPM)/docker
-
-endif
+RUN apk add --no-cache \
+    terraform

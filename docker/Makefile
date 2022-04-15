@@ -3,7 +3,7 @@
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 15-04-2022 06:18:33
+# Last Modified: 15-04-2022 08:29:56
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -27,7 +27,6 @@ include $(PROJECT_ROOT)/shared.mk
 
 export NAME ?= docker
 export VERSION ?= 0.0.1
-export IMAGE := $(REGISTRY)/$(NAME)
 
 include $(MKPM)/docker
 
