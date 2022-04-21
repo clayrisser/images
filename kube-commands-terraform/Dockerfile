@@ -3,7 +3,7 @@
 # File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 21-04-2022 08:03:11
+# Last Modified: 21-04-2022 08:09:41
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -25,4 +25,4 @@ FROM registry.gitlab.com/risserlabs/community/images/kube-commands:0.0.1
 RUN apk add --no-cache \
     terraform
 
-ENTRYPOINT /usr/bin/terraform
+ENTRYPOINT [""]
