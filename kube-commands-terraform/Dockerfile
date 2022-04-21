@@ -1,9 +1,9 @@
-# File: /Makefile
+# File: /kube-commands-terraform/Dockerfile
 # Project: ci-images
-# File Created: 15-08-2021 02:20:14
+# File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 21-04-2022 08:01:39
+# Last Modified: 21-04-2022 08:03:11
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,40 +20,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include mkpm.mk
-ifneq (,$(MKPM_READY))
-include shared.mk
+FROM registry.gitlab.com/risserlabs/community/images/kube-commands:0.0.1
 
-IMAGES = \
-	base \
-	docker \
-	docker-node \
-	kube-commands \
-	kube-commands-psql \
-	node \
-	podman \
-	terraform \
-	kube-commands-terraform
+RUN apk add --no-cache \
+    terraform
 
-.PHONY: build
-build: | $(patsubst %,%/build,$(IMAGES))
-
-.PHONY: push
-push: | $(patsubst %,%/push,$(IMAGES))
-
-.PHONY: pull
-pull: | $(patsubst %,%/pull,$(IMAGES))
-
-%/build:
-	@$(MAKE) -sC $* build ARGS=$(ARGS)
-
-%/pull:
-	@$(MAKE) -sC $* pull ARGS=$(ARGS)
-
-%/push:
-	@$(MAKE) -sC $* push ARGS=$(ARGS)
-
-%/shell:
-	@$(MAKE) -sC $* shell ARGS=$(ARGS)
-
-endif
+ENTRYPOINT /usr/bin/terraform
