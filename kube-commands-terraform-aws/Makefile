@@ -1,9 +1,9 @@
-# File: /Makefile
+# File: /kube-commands-terraform-aws/Makefile
 # Project: ci-images
-# File Created: 15-08-2021 02:20:14
+# File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 22-04-2022 12:48:03
+# Last Modified: 22-04-2022 12:47:57
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Silicon Hills LLC (c) Copyright 2021
@@ -20,41 +20,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include mkpm.mk
+include ../mkpm.mk
 ifneq (,$(MKPM_READY))
-include shared.mk
+include $(MKPM)/gnu
+include $(PROJECT_ROOT)/shared.mk
 
-IMAGES = \
-	base \
-	docker \
-	docker-node \
-	kube-commands \
-	kube-commands-psql \
-	node \
-	podman \
-	terraform \
-	kube-commands-terraform \
-	kube-commands-terraform-aws
+export NAME ?= kube-commands-terraform-aws
+export VERSION ?= 0.0.1
 
-.PHONY: build
-build: | $(patsubst %,%/build,$(IMAGES))
-
-.PHONY: push
-push: | $(patsubst %,%/push,$(IMAGES))
-
-.PHONY: pull
-pull: | $(patsubst %,%/pull,$(IMAGES))
-
-%/build:
-	@$(MAKE) -sC $* build ARGS=$(ARGS)
-
-%/pull:
-	@$(MAKE) -sC $* pull ARGS=$(ARGS)
-
-%/push:
-	@$(MAKE) -sC $* push ARGS=$(ARGS)
-
-%/shell:
-	@$(MAKE) -sC $* shell ARGS=$(ARGS)
+include $(MKPM)/docker
 
 endif
