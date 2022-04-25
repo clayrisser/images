@@ -3,10 +3,10 @@
 # File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 15-04-2022 07:06:05
+# Last Modified: 25-04-2022 13:44:50
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
-# Silicon Hills LLC (c) Copyright 2021
+# Risser Labs LLC (c) Copyright 2021
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -47,6 +47,12 @@ RUN ( \
 RUN export PATH="${PATH}:${HOME}/.krew/bin" && \
     kubectl krew install ctx && \
     kubectl krew install ns
+RUN curl -Lo kops https://github.com/kubernetes/kops/releases/download/$( \
+    curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | \
+    grep tag_name | cut -d '"' -f 4 \
+    )/kops-linux-amd64 && \
+    chmod +x kops && \
+    mv kops /usr/local/bin/kops
 RUN rm -rf /tmp/* /tmp/.* 2>&1 | true
 
 ENTRYPOINT /usr/local/bin/kubectl

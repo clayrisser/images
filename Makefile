@@ -1,12 +1,12 @@
-# File: /Makefile
+# File: /kube-commands/Dockerfile
 # Project: ci-images
 # File Created: 15-08-2021 02:20:14
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 22-04-2022 12:48:03
+# Last Modified: 25-04-2022 13:44:50
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
-# Silicon Hills LLC (c) Copyright 2021
+# Risser Labs LLC (c) Copyright 2021
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

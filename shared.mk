@@ -1,12 +1,12 @@
-# File: /shared.mk
+# File: /kube-commands/Dockerfile
 # Project: images
 # File Created: 15-04-2022 06:16:26
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 15-04-2022 06:18:27
+# Last Modified: 25-04-2022 13:44:50
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
-# Silicon Hills LLC (c) Copyright 2021 - 2022
+# Risser Labs LLC (c) Copyright 2021 - 2022
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

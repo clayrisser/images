@@ -1,12 +1,12 @@
-# File: /docker.mk
+# File: /kube-commands/Dockerfile
 # Project: docker-openldap
 # File Created: 24-06-2021 04:03:49
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 06-10-2021 14:44:05
+# Last Modified: 25-04-2022 13:44:50
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
-# Silicon Hills LLC (c) Copyright 2021
+# Risser Labs LLC (c) Copyright 2021
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
