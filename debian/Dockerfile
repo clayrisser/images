@@ -3,7 +3,7 @@
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 09-06-2022 15:05:42
+# Last Modified: 12-06-2022 09:40:32
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021
@@ -26,6 +26,7 @@ RUN apt-get update && apt-get install -y \
     bash \
     curl \
     debhelper \
+    devscripts \
     dh-make \
     dpkg-dev \
     git \
