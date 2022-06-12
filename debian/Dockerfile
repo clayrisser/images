@@ -3,7 +3,7 @@
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 12-06-2022 09:40:32
+# Last Modified: 12-06-2022 10:45:46
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021
@@ -34,7 +34,8 @@ RUN apt-get update && apt-get install -y \
     jq \
     make \
     openssl \
-    patch && \
+    patch \
+    rsync && \
     rm -rf /var/lib/apt/lists/* && \
     curl -Lo /usr/local/bin/yq \
     https://github.com/mikefarah/yq/releases/download/v4.25.2/yq_linux_amd64
