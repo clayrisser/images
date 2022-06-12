@@ -26,6 +26,7 @@ include shared.mk
 
 IMAGES = \
 	base \
+	debian \
 	docker \
 	docker-node \
 	kube-commands \
