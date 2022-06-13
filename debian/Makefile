@@ -3,7 +3,7 @@
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 09-06-2022 14:47:01
+# Last Modified: 13-06-2022 02:28:57
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021
@@ -26,7 +26,7 @@ include $(MKPM)/gnu
 include $(PROJECT_ROOT)/shared.mk
 
 export NAME ?= debian
-export VERSION ?= 0.0.1
+export VERSION ?= 11.3.0
 
 include $(MKPM)/docker
 

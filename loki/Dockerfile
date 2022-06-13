@@ -1,9 +1,9 @@
-# File: /base/Dockerfile
+# File: /loki/Dockerfile
 # Project: ci-images
-# File Created: 06-10-2021 14:23:56
+# File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 13-06-2022 02:24:11
+# Last Modified: 13-06-2022 02:32:52
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021
@@ -20,16 +20,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM alpine:3.15.4
+FROM node:16.14.2-bullseye
 
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y \
     bash \
+    chromium \
     curl \
     git \
     git-lfs \
+    graphicsmagick \
     jq \
     make \
     openssl \
     patch \
-    rsync \
-    yq
+    rsync && \
+    rm -rf /var/lib/apt/lists/* && \
+    curl -Lo /usr/local/bin/yq \
+    https://github.com/mikefarah/yq/releases/download/v4.25.2/yq_linux_amd64
+
+RUN npm install -g \
+    pnpm

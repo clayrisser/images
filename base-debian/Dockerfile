@@ -1,9 +1,9 @@
-# File: /base/Dockerfile
+# File: /base-debian/Dockerfile
 # Project: ci-images
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 13-06-2022 02:24:11
+# Last Modified: 13-06-2022 02:24:36
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021
@@ -20,9 +20,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM alpine:3.15.4
+FROM debian:11.3
 
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y \
     bash \
     curl \
     git \
@@ -31,5 +31,9 @@ RUN apk add --no-cache \
     make \
     openssl \
     patch \
-    rsync \
-    yq
+    rsync && \
+    rm -rf /var/lib/apt/lists/* && \
+    curl -Lo /usr/local/bin/yq \
+    https://github.com/mikefarah/yq/releases/download/v4.25.2/yq_linux_amd64
+
+WORKDIR /tmp

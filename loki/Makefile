@@ -1,9 +1,9 @@
-# File: /base/Dockerfile
+# File: /loki/Makefile
 # Project: ci-images
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 13-06-2022 02:24:11
+# Last Modified: 13-06-2022 02:28:16
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021
@@ -20,16 +20,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM alpine:3.15.4
+include ../mkpm.mk
+ifneq (,$(MKPM_READY))
+include $(MKPM)/gnu
+include $(PROJECT_ROOT)/shared.mk
 
-RUN apk add --no-cache \
-    bash \
-    curl \
-    git \
-    git-lfs \
-    jq \
-    make \
-    openssl \
-    patch \
-    rsync \
-    yq
+export NAME ?= loki
+export VERSION ?= 0.0.1
+
+include $(MKPM)/docker
+
+endif

@@ -1,9 +1,9 @@
-# File: /kube-commands/Dockerfile
+# File: /Makefile
 # Project: ci-images
 # File Created: 15-08-2021 02:20:14
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 25-04-2022 13:44:50
+# Last Modified: 13-06-2022 02:26:54
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021
@@ -26,10 +26,13 @@ include shared.mk
 
 IMAGES = \
 	base \
+	base-debian \
+	debian \
 	docker \
 	docker-node \
 	kube-commands \
 	kube-commands-psql \
+	loki \
 	node \
 	podman \
 	terraform \
