@@ -1,9 +1,9 @@
-# File: /Makefile
+# File: /pgo-deployer/Dockerfile
 # Project: ci-images
-# File Created: 15-08-2021 02:20:14
+# File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 28-06-2022 11:18:28
+# Last Modified: 28-06-2022 11:17:17
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021
@@ -20,45 +20,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include mkpm.mk
-ifneq (,$(MKPM_READY))
-include shared.mk
+FROM perconalab/percona-postgresql-operator:1.2.0-pgo-deployer
 
-IMAGES = \
-	base \
-	base-debian \
-	debian \
-	docker \
-	docker-node \
-	kube-commands \
-	kube-commands-psql \
-	loki \
-	node \
-	pgo-deployer \
-	podman \
-	terraform \
-	kube-commands-terraform \
-	kube-commands-terraform-aws
+USER root
 
-.PHONY: build
-build: | $(patsubst %,%/build,$(IMAGES))
+RUN cd /ansible/postgres-operator/roles/pgo-operator/tasks && \
+    cat crds.yml | \
+    head -n "$(expr $(cat -n crds.yml | grep 'PerconaPGCluster CRD' | grep -oE '^\s*\w+') - 1)" > _crds.yml && \
+    mv _crds.yml crds.yml
 
-.PHONY: push
-push: | $(patsubst %,%/push,$(IMAGES))
-
-.PHONY: pull
-pull: | $(patsubst %,%/pull,$(IMAGES))
-
-%/build:
-	@$(MAKE) -sC $* build ARGS=$(ARGS)
-
-%/pull:
-	@$(MAKE) -sC $* pull ARGS=$(ARGS)
-
-%/push:
-	@$(MAKE) -sC $* push ARGS=$(ARGS)
-
-%/shell:
-	@$(MAKE) -sC $* shell ARGS=$(ARGS)
-
-endif
+USER 2

@@ -1,9 +1,9 @@
-# File: /Makefile
+# File: /pgo-deployer/Makefile
 # Project: ci-images
-# File Created: 15-08-2021 02:20:14
+# File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 28-06-2022 11:18:28
+# Last Modified: 28-06-2022 11:06:38
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021
@@ -20,45 +20,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include mkpm.mk
+include ../mkpm.mk
 ifneq (,$(MKPM_READY))
-include shared.mk
+include $(MKPM)/gnu
+include $(PROJECT_ROOT)/shared.mk
 
-IMAGES = \
-	base \
-	base-debian \
-	debian \
-	docker \
-	docker-node \
-	kube-commands \
-	kube-commands-psql \
-	loki \
-	node \
-	pgo-deployer \
-	podman \
-	terraform \
-	kube-commands-terraform \
-	kube-commands-terraform-aws
+export NAME ?= pgo-deployer
+export VERSION ?= 1.2.0
 
-.PHONY: build
-build: | $(patsubst %,%/build,$(IMAGES))
-
-.PHONY: push
-push: | $(patsubst %,%/push,$(IMAGES))
-
-.PHONY: pull
-pull: | $(patsubst %,%/pull,$(IMAGES))
-
-%/build:
-	@$(MAKE) -sC $* build ARGS=$(ARGS)
-
-%/pull:
-	@$(MAKE) -sC $* pull ARGS=$(ARGS)
-
-%/push:
-	@$(MAKE) -sC $* push ARGS=$(ARGS)
-
-%/shell:
-	@$(MAKE) -sC $* shell ARGS=$(ARGS)
+include $(MKPM)/docker
 
 endif
