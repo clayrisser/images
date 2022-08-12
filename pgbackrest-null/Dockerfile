@@ -3,7 +3,7 @@
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 12-08-2022 04:29:23
+# Last Modified: 12-08-2022 04:49:15
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021
@@ -24,5 +24,7 @@ FROM busybox:1.35.0
 
 COPY entrypoint.sh /usr/local/bin/entrypoint
 RUN chmod +x /usr/local/bin/entrypoint
+
+USER 26
 
 ENTRYPOINT [ "sh", "/usr/local/bin/entrypoint" ]
