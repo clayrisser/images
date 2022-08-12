@@ -1,9 +1,9 @@
-# File: /pgo-deployer/Dockerfile
+# File: /pgbackrest-null/Dockerfile
 # Project: ci-images
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 28-06-2022 11:17:17
+# Last Modified: 12-08-2022 04:29:23
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021
@@ -20,13 +20,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM perconalab/percona-postgresql-operator:1.2.0-pgo-deployer
+FROM busybox:1.35.0
 
-USER root
+COPY entrypoint.sh /usr/local/bin/entrypoint
+RUN chmod +x /usr/local/bin/entrypoint
 
-RUN cd /ansible/postgres-operator/roles/pgo-operator/tasks && \
-    cat crds.yml | \
-    head -n "$(expr $(cat -n crds.yml | grep 'PerconaPGCluster CRD' | grep -oE '^\s*\w+') - 1)" > _crds.yml && \
-    mv _crds.yml crds.yml
-
-USER 2
+ENTRYPOINT [ "sh", "/usr/local/bin/entrypoint" ]

@@ -1,9 +1,9 @@
-# File: /pgo-deployer/Makefile
+# File: /pgbackrest-null/Makefile
 # Project: ci-images
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 28-06-2022 11:06:38
+# Last Modified: 12-08-2022 04:26:49
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021
@@ -25,8 +25,8 @@ ifneq (,$(MKPM_READY))
 include $(MKPM)/gnu
 include $(PROJECT_ROOT)/shared.mk
 
-export NAME ?= pgo-deployer
-export VERSION ?= 1.2.0
+export NAME ?= pgbackrest-null
+export VERSION ?= 0.0.1
 
 include $(MKPM)/docker
 

@@ -3,7 +3,7 @@
 # File Created: 15-08-2021 02:20:14
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 28-06-2022 11:18:28
+# Last Modified: 12-08-2022 04:33:51
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021
@@ -34,7 +34,7 @@ IMAGES = \
 	kube-commands-psql \
 	loki \
 	node \
-	pgo-deployer \
+	pgbackrest-null \
 	podman \
 	terraform \
 	kube-commands-terraform \
