@@ -1,9 +1,9 @@
-# File: /kube-commands/Dockerfile
+# File: /mkpm.mk
 # Project: images
-# File Created: 15-04-2022 06:10:34
+# File Created: 17-09-2022 10:01:51
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 25-04-2022 13:44:50
+# Last Modified: 17-09-2022 10:01:58
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021 - 2022
@@ -20,15 +20,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-MKPM_PACKAGES := \
+export MKPM_PACKAGES_DEFAULT := \
 	docker=0.0.16 \
 	gnu=0.0.3
 
-MKPM_REPOS := \
+export MKPM_REPO_DEFAULT := \
 	https://gitlab.com/risserlabs/community/mkpm-stable.git
 
 ############# MKPM BOOTSTRAP SCRIPT BEGIN #############
-MKPM_BOOTSTRAP := https://risserlabs.gitlab.io/community/mkpm/bootstrap.mk
+MKPM_BOOTSTRAP := https://gitlab.com/api/v4/projects/29276259/packages/generic/mkpm/0.3.0/bootstrap.mk
 export PROJECT_ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 NULL := /dev/null
 TRUE := true
@@ -36,11 +36,10 @@ ifneq ($(patsubst %.exe,%,$(SHELL)),$(SHELL))
 	NULL = nul
 	TRUE = type nul
 endif
--include $(PROJECT_ROOT)/.mkpm/.bootstrap.mk
+include $(PROJECT_ROOT)/.mkpm/.bootstrap.mk
 $(PROJECT_ROOT)/.mkpm/.bootstrap.mk:
 	@mkdir $(@D) 2>$(NULL) || $(TRUE)
 	@$(shell curl --version >$(NULL) 2>$(NULL) && \
-			echo curl -L -o || \
-			echo wget --content-on-error -O) \
+		echo curl -Lo || echo wget -O) \
 		$@ $(MKPM_BOOTSTRAP) >$(NULL)
 ############## MKPM BOOTSTRAP SCRIPT END ##############

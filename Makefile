@@ -3,7 +3,7 @@
 # File Created: 15-08-2021 02:20:14
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 13-09-2022 14:37:09
+# Last Modified: 17-09-2022 10:00:23
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021
@@ -38,6 +38,7 @@ IMAGES = \
 	postgres-age \
 	terraform \
 	kube-commands-terraform \
+	kando-openldap \
 	kube-commands-terraform-aws
 
 .PHONY: build
