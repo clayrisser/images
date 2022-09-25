@@ -1,9 +1,9 @@
-# File: /kube-commands/Dockerfile
+# File: /node/Makefile
 # Project: ci-images
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 25-04-2022 13:44:50
+# Last Modified: 25-09-2022 07:53:37
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021
@@ -26,7 +26,7 @@ include $(MKPM)/gnu
 include $(PROJECT_ROOT)/shared.mk
 
 export NAME ?= node
-export VERSION ?= 16.14.2
+export VERSION ?= 16.17.0
 
 include $(MKPM)/docker
 

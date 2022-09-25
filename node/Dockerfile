@@ -1,9 +1,9 @@
-# File: /kube-commands/Dockerfile
+# File: /node/Dockerfile
 # Project: ci-images
 # File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 25-04-2022 13:44:50
+# Last Modified: 25-09-2022 07:53:30
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021
@@ -20,7 +20,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM node:16.14.2-alpine3.15
+FROM node:16.17.0-alpine3.16
 
 RUN apk add --no-cache \
     bash \
