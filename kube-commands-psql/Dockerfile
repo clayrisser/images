@@ -1,9 +1,9 @@
-# File: /kube-commands/Dockerfile
+# File: /kube-commands-psql/Dockerfile
 # Project: ci-images
 # File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 25-04-2022 13:44:50
+# Last Modified: 07-10-2022 09:44:31
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021
@@ -20,7 +20,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM registry.gitlab.com/risserlabs/community/images/base:0.0.1
+FROM registry.gitlab.com/risserlabs/community/images/kube-commands:0.0.1
 
 RUN apk add --no-cache \
     postgresql-client
