@@ -3,7 +3,7 @@
 # File Created: 15-08-2021 02:20:14
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 05-04-2023 16:43:49
+# Last Modified: 07-04-2023 09:19:13
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021
@@ -32,6 +32,7 @@ IMAGES = \
 	docker-node \
 	kube-commands \
 	kube-commands-psql \
+	debian-node \
 	loki \
 	node \
 	podman \
