@@ -3,6 +3,7 @@
     "build",
     "dind",
     "docker",
+    "healthz",
     "kubectl",
     "psql",
     "risser",
@@ -84,5 +85,9 @@
   "psi-header.license-reference": {
     "uri": "../LICENSE",
     "uriIsLocalFile": true
-  }
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "python.formatting.provider": "none"
 }

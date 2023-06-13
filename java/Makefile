@@ -1,9 +1,9 @@
-# File: /keycloak/Makefile
+# File: /java/Makefile
 # Project: ci-images
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 10-06-2023 09:40:29
+# Last Modified: 10-06-2023 06:11:53
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021
@@ -25,8 +25,8 @@ ifneq (,$(MKPM_READY))
 include $(MKPM)/gnu
 include $(PROJECT_ROOT)/shared.mk
 
-export NAME ?= keycloak
-export VERSION ?= 21.1.0
+export NAME ?= java
+export VERSION ?= 17.0.0
 
 include $(MKPM)/docker
 

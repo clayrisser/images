@@ -3,7 +3,7 @@
 # File Created: 15-08-2021 02:20:14
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 10-06-2023 05:32:46
+# Last Modified: 13-06-2023 11:48:12
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021
@@ -41,7 +41,8 @@ IMAGES = \
 	kube-commands-terraform \
 	kando-openldap \
 	kube-commands-terraform-aws \
-	keycloak
+	keycloak \
+	java
 
 .PHONY: build
 build: | $(patsubst %,%/build,$(IMAGES))

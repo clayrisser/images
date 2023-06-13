@@ -1,9 +1,9 @@
-# File: /keycloak/Makefile
+# File: /java/Dockerfile
 # Project: ci-images
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 10-06-2023 09:40:29
+# Last Modified: 10-06-2023 06:11:36
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021
@@ -20,14 +20,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include ../mkpm.mk
-ifneq (,$(MKPM_READY))
-include $(MKPM)/gnu
-include $(PROJECT_ROOT)/shared.mk
+FROM registry.gitlab.com/risserlabs/community/images/base-debian:11.3.0
 
-export NAME ?= keycloak
-export VERSION ?= 21.1.0
+RUN apt-get update && apt-get install -y \
+    maven \
+    gradle \
+    openjdk-17-jdk && \
+    rm -rf /var/lib/apt/lists/*
 
-include $(MKPM)/docker
-
-endif
+WORKDIR /tmp
