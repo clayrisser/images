@@ -3,7 +3,7 @@
 # File Created: 10-06-2023 05:32:03
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 10-06-2023 09:38:58
+# Last Modified: 17-06-2023 08:18:15
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # Risser Labs LLC (c) Copyright 2021 - 2023
@@ -32,9 +32,10 @@ RUN /opt/keycloak/bin/kc.sh build
 
 FROM quay.io/keycloak/keycloak:21.1
 COPY --from=builder /opt/keycloak/ /opt/keycloak/
-COPY entrypoint.sh /usr/local/bin/entrypoint
 USER root
-RUN chmod +x /usr/local/bin/entrypoint
+RUN mv /opt/keycloak/bin/kc.sh /opt/keycloak/bin/_kc.sh
+COPY kc.sh /opt/keycloak/bin/kc.sh
+RUN chmod +x /opt/keycloak/bin/kc.sh
 USER 1000
 
 ENV KC_DB=postgres \
@@ -44,6 +45,3 @@ ENV KC_DB=postgres \
     KC_HOSTNAME=localhost \
     KEYCLOAK_ADMIN=admin \
     KEYCLOAK_ADMIN_PASSWORD=P@ssw0rd
-
-ENTRYPOINT [ "/usr/local/bin/entrypoint" ]
-CMD ["start-dev"]
