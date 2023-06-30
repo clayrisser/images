@@ -1,5 +1,5 @@
 docker-build:
-  image: registry.gitlab.com/risserlabs/community/images/podman:0.0.1
+  image: registry.gitlab.com/bitspur/rock8s/images/podman:0.0.1
   stage: build
   before_script:
     - podman login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY

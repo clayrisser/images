@@ -3,10 +3,10 @@
 # File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 29-04-2022 17:04:19
+# Last Modified: 30-06-2023 16:52:41
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
-# Risser Labs LLC (c) Copyright 2021
+# BitSpur (c) Copyright 2021
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM registry.gitlab.com/risserlabs/community/images/kube-commands-terraform:0.0.1
+FROM registry.gitlab.com/bitspur/rock8s/images/kube-commands-terraform:0.0.1
 
 ENV GLIBC_VER=2.31-r0
 

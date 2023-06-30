@@ -3,10 +3,10 @@
 # File Created: 17-09-2022 10:01:51
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 17-09-2022 10:01:58
+# Last Modified: 30-06-2023 16:52:41
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
-# Risser Labs LLC (c) Copyright 2021 - 2022
+# BitSpur (c) Copyright 2021 - 2022
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ export MKPM_PACKAGES_DEFAULT := \
 	gnu=0.0.3
 
 export MKPM_REPO_DEFAULT := \
-	https://gitlab.com/risserlabs/community/mkpm-stable.git
+	https://gitlab.com/bitspur/rock8s/mkpm-stable.git
 
 ############# MKPM BOOTSTRAP SCRIPT BEGIN #############
 MKPM_BOOTSTRAP := https://gitlab.com/api/v4/projects/29276259/packages/generic/mkpm/0.3.0/bootstrap.mk

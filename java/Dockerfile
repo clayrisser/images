@@ -3,10 +3,10 @@
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 10-06-2023 06:11:36
+# Last Modified: 30-06-2023 16:52:41
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
-# Risser Labs LLC (c) Copyright 2021
+# BitSpur (c) Copyright 2021
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM registry.gitlab.com/risserlabs/community/images/base-debian:11.3.0
+FROM registry.gitlab.com/bitspur/rock8s/images/base-debian:11.3.0
 
 RUN apt-get update && apt-get install -y \
     maven \

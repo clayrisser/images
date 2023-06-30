@@ -1,12 +1,12 @@
-# File: /kube-commands/Dockerfile
+# File: /shared.mk
 # Project: images
 # File Created: 15-04-2022 06:16:26
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 25-04-2022 13:44:50
+# Last Modified: 30-06-2023 16:52:41
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
-# Risser Labs LLC (c) Copyright 2021 - 2022
+# BitSpur (c) Copyright 2021 - 2022
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,5 +20,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-export REGISTRY ?= registry.gitlab.com/risserlabs/community/images
+export REGISTRY ?= registry.gitlab.com/bitspur/rock8s/images
 export DOCKER_FLAVOR ?= docker
