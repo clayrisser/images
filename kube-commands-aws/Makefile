@@ -1,9 +1,9 @@
-# File: /docker-node/Makefile
+# File: /kube-commands-aws/Makefile
 # Project: ci-images
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 30-06-2023 17:07:59
+# Last Modified: 30-06-2023 17:32:25
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021
@@ -25,8 +25,8 @@ ifneq (,$(MKPM_READY))
 include $(MKPM)/gnu
 include $(PROJECT_ROOT)/shared.mk
 
-export NAME ?= docker-node
-export VERSION ?= 18.16.1
+export NAME ?= kube-commands-aws
+export VERSION ?= 0.0.1
 
 include $(MKPM)/docker
 

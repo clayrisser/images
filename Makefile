@@ -3,7 +3,7 @@
 # File Created: 15-08-2021 02:20:14
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 30-06-2023 16:52:41
+# Last Modified: 30-06-2023 17:32:11
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021
@@ -20,6 +20,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+export MAKEFLAGS := -j1
+
 include mkpm.mk
 ifneq (,$(MKPM_READY))
 include shared.mk
@@ -29,12 +31,13 @@ IMAGES = \
 	base-debian \
 	debian \
 	docker \
+	node \
+	debian-node \
 	docker-node \
 	kube-commands \
+	kube-commands-aws \
 	kube-commands-psql \
-	debian-node \
 	loki \
-	node \
 	podman \
 	postgres-age \
 	terraform \

@@ -3,7 +3,7 @@
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 30-06-2023 16:52:41
+# Last Modified: 30-06-2023 17:02:55
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021
@@ -20,7 +20,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM debian:11.3
+FROM debian:12
 
 RUN apt-get update && apt-get install -y \
     bash \
@@ -31,9 +31,8 @@ RUN apt-get update && apt-get install -y \
     make \
     openssl \
     patch \
-    rsync && \
-    rm -rf /var/lib/apt/lists/* && \
-    curl -Lo /usr/local/bin/yq \
-    https://github.com/mikefarah/yq/releases/download/v4.25.2/yq_linux_amd64
+    rsync \
+    yq && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /tmp

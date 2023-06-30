@@ -1,9 +1,9 @@
-# File: /docker-node/Makefile
+# File: /kube-commands-aws/Dockerfile
 # Project: ci-images
-# File Created: 06-10-2021 14:23:56
+# File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 30-06-2023 17:07:59
+# Last Modified: 30-06-2023 17:33:13
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021
@@ -20,14 +20,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include ../mkpm.mk
-ifneq (,$(MKPM_READY))
-include $(MKPM)/gnu
-include $(PROJECT_ROOT)/shared.mk
+FROM registry.gitlab.com/bitspur/rock8s/images/kube-commands:0.0.1
 
-export NAME ?= docker-node
-export VERSION ?= 18.16.1
-
-include $(MKPM)/docker
-
-endif
+RUN apk add --no-cache \
+    aws-cli

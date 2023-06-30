@@ -3,7 +3,7 @@
 # File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 30-06-2023 16:52:41
+# Last Modified: 30-06-2023 17:07:50
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021
@@ -20,7 +20,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM node:16.14.2-bullseye
+FROM node:18.16.1-bookworm
 
 RUN apt-get update && apt-get install -y \
     bash \
@@ -33,10 +33,9 @@ RUN apt-get update && apt-get install -y \
     make \
     openssl \
     patch \
-    rsync && \
-    rm -rf /var/lib/apt/lists/* && \
-    curl -Lo /usr/local/bin/yq \
-    https://github.com/mikefarah/yq/releases/download/v4.25.2/yq_linux_amd64
+    rsync \
+    yq && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN npm install -g \
     pnpm
