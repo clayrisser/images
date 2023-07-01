@@ -3,7 +3,7 @@
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 30-06-2023 16:52:41
+# Last Modified: 01-07-2023 04:28:35
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021
@@ -20,7 +20,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM registry.gitlab.com/bitspur/rock8s/images/base-debian:11.3.0
+FROM registry.gitlab.com/bitspur/rock8s/images/base-debian:12.0.0
 
 RUN apt-get update && apt-get install -y \
     maven \

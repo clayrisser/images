@@ -3,7 +3,7 @@
 # File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 30-06-2023 16:52:41
+# Last Modified: 01-07-2023 04:15:22
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021
@@ -24,5 +24,3 @@ FROM registry.gitlab.com/bitspur/rock8s/images/kube-commands:0.0.1
 
 RUN apk add --no-cache \
     terraform
-
-ENTRYPOINT [""]

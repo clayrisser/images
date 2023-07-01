@@ -3,7 +3,7 @@
 # File Created: 15-08-2021 02:16:42
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 30-06-2023 17:33:13
+# Last Modified: 01-07-2023 04:25:17
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021
@@ -24,3 +24,7 @@ FROM registry.gitlab.com/bitspur/rock8s/images/kube-commands:0.0.1
 
 RUN apk add --no-cache \
     aws-cli
+
+RUN curl -L https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v0.5.7/aws-iam-authenticator_0.5.7_linux_amd64 \
+    -o /usr/local/bin/aws-iam-authenticator && \
+    chmod +x /usr/local/bin/aws-iam-authenticator
