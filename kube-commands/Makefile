@@ -3,7 +3,7 @@
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 30-06-2023 16:52:41
+# Last Modified: 13-07-2023 13:44:23
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021
@@ -26,7 +26,7 @@ include $(MKPM)/gnu
 include $(PROJECT_ROOT)/shared.mk
 
 export NAME ?= kube-commands
-export VERSION ?= 0.0.1
+export VERSION ?= 3.18.0
 
 include $(MKPM)/docker
 
