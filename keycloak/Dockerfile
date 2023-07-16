@@ -3,7 +3,7 @@
 # File Created: 10-06-2023 05:32:03
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 16-07-2023 05:37:32
+# Last Modified: 16-07-2023 09:50:34
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021 - 2023
@@ -35,7 +35,8 @@ COPY --from=builder /opt/keycloak/ /opt/keycloak/
 USER root
 RUN mv /opt/keycloak/bin/kc.sh /opt/keycloak/bin/_kc.sh
 COPY kc.sh /opt/keycloak/bin/kc.sh
-RUN chmod +x /opt/keycloak/bin/kc.sh
+RUN chmod +x /opt/keycloak/bin/kc.sh && \
+    chmod 666 /etc/alternatives/jre/lib/security/cacerts
 USER 1000
 
 ENV KC_DB=postgres \
