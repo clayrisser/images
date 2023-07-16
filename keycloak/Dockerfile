@@ -3,7 +3,7 @@
 # File Created: 10-06-2023 05:32:03
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 30-06-2023 16:52:41
+# Last Modified: 16-07-2023 05:37:32
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021 - 2023
@@ -40,7 +40,9 @@ USER 1000
 
 ENV KC_DB=postgres \
     KC_DB_PASSWORD=postgres \
-    KC_DB_URL=jdbc:postgresql://postgres:5432/keycloak \
+    KC_DB_URL_DATABASE=keycloak \
+    KC_DB_URL_HOST=postgres \
+    KC_DB_URL_PORT=5432 \
     KC_DB_USERNAME=postgres \
     KC_HOSTNAME=localhost \
     KEYCLOAK_ADMIN=admin \
