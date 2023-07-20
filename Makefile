@@ -3,7 +3,7 @@
 # File Created: 15-08-2021 02:20:14
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 30-06-2023 17:32:11
+# Last Modified: 20-07-2023 13:35:02
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021
@@ -29,7 +29,8 @@ include shared.mk
 IMAGES = \
 	base \
 	base-debian \
-	debian \
+	debian-build \
+	debian-python \
 	docker \
 	node \
 	debian-node \

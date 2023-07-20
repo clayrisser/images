@@ -1,9 +1,9 @@
-# File: /debian/Makefile
+# File: /debian-build/Makefile
 # Project: ci-images
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 01-07-2023 04:28:02
+# Last Modified: 20-07-2023 13:36:09
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021
@@ -25,7 +25,7 @@ ifneq (,$(MKPM_READY))
 include $(MKPM)/gnu
 include $(PROJECT_ROOT)/shared.mk
 
-export NAME ?= debian
+export NAME ?= debian-build
 export VERSION ?= 12.0.0
 
 include $(MKPM)/docker

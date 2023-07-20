@@ -1,9 +1,9 @@
-# File: /debian/Dockerfile
+# File: /debian-build-python/Dockerfile
 # Project: ci-images
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 01-07-2023 04:28:08
+# Last Modified: 20-07-2023 13:35:58
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021
@@ -20,7 +20,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM debian:12.0
+FROM python:3.12.0b4-bookworm
 
 RUN apt-get update && apt-get install -y \
     bash \
@@ -32,6 +32,7 @@ RUN apt-get update && apt-get install -y \
     git \
     git-lfs \
     jq \
+    live-build \
     make \
     openssl \
     patch \
