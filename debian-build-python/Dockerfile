@@ -3,7 +3,7 @@
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 20-07-2023 13:35:58
+# Last Modified: 21-07-2023 07:22:32
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021
@@ -31,11 +31,15 @@ RUN apt-get update && apt-get install -y \
     dpkg-dev \
     git \
     git-lfs \
+    grub-emu \
+    imagemagick \
     jq \
     live-build \
     make \
     openssl \
     patch \
+    python3-poetry-core \
+    python3-venv \
     rsync \
     yq && \
     rm -rf /var/lib/apt/lists/*
