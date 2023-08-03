@@ -3,7 +3,7 @@
 # File Created: 10-06-2023 05:32:03
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 16-07-2023 09:50:34
+# Last Modified: 03-08-2023 17:59:21
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021 - 2023
@@ -28,7 +28,7 @@ ENV KC_DB=postgres
 
 WORKDIR /opt/keycloak
 
-RUN /opt/keycloak/bin/kc.sh build
+RUN /opt/keycloak/bin/kc.sh build --vault=/opt/keycloak/secrets
 
 FROM quay.io/keycloak/keycloak:21.1
 COPY --from=builder /opt/keycloak/ /opt/keycloak/
