@@ -3,7 +3,7 @@
 # File Created: 07-04-2023 09:18:49
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 30-06-2023 17:04:32
+# Last Modified: 04-08-2023 07:27:02
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021 - 2023
@@ -20,8 +20,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include ../mkpm.mk
-ifneq (,$(MKPM_READY))
+include $(MKPM)/mkpm
 include $(MKPM)/gnu
 include $(PROJECT_ROOT)/shared.mk
 
@@ -29,5 +28,3 @@ export NAME ?= debian-node
 export VERSION ?= 18.16.1
 
 include $(MKPM)/docker
-
-endif
