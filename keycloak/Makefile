@@ -3,7 +3,7 @@
 # File Created: 06-10-2021 14:23:56
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 04-08-2023 07:27:02
+# Last Modified: 04-08-2023 17:33:09
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021
@@ -25,6 +25,6 @@ include $(MKPM)/gnu
 include $(PROJECT_ROOT)/shared.mk
 
 export NAME ?= keycloak
-export VERSION ?= 21.1.0
+export VERSION ?= 22.0.1
 
 include $(MKPM)/docker
