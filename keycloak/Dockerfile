@@ -3,7 +3,7 @@
 # File Created: 10-06-2023 05:32:03
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 04-08-2023 17:08:33
+# Last Modified: 05-08-2023 15:20:48
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021 - 2023
@@ -20,7 +20,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM quay.io/keycloak/keycloak:22.0.1 as builder
+FROM quay.io/keycloak/keycloak:21.1.0 as builder
 
 ENV KC_HEALTH_ENABLED=true
 ENV KC_METRICS_ENABLED=true
@@ -28,9 +28,9 @@ ENV KC_DB=postgres
 
 WORKDIR /opt/keycloak
 
-RUN /opt/keycloak/bin/kc.sh build --vault=file
+RUN /opt/keycloak/bin/kc.sh build --db=postgres --vault=file
 
-FROM quay.io/keycloak/keycloak:22.0.1
+FROM quay.io/keycloak/keycloak:21.1.0
 COPY --from=builder /opt/keycloak/ /opt/keycloak/
 USER root
 RUN mv /opt/keycloak/bin/kc.sh /opt/keycloak/bin/_kc.sh
