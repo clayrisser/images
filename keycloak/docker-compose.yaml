@@ -3,7 +3,7 @@
 # File Created: 06-08-2023 06:39:05
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 06-08-2023 06:52:35
+# Last Modified: 06-08-2023 07:18:08
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021 - 2023
@@ -24,7 +24,6 @@ version: "3.7"
 
 services:
   keycloak:
-    container_name: keycloak
     image: registry.gitlab.com/bitspur/rock8s/images/keycloak:latest
     restart: unless-stopped
     command: start
@@ -37,8 +36,7 @@ services:
 
   postgres:
     image: postgres:12
-    container_name: postgres
-    restart: always
+    restart: unless-stopped
     ports:
       - 5432:5432
     environment:
