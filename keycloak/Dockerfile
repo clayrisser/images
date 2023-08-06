@@ -3,7 +3,7 @@
 # File Created: 10-06-2023 05:32:03
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 06-08-2023 05:46:47
+# Last Modified: 06-08-2023 06:50:26
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021 - 2023
@@ -46,10 +46,11 @@ ENV KC_DB=postgres \
     KC_DB_URL_HOST=postgres \
     KC_DB_URL_PORT=5432 \
     KC_DB_USERNAME=postgres \
-    KC_HOSTNAME=localhost \
+    KC_HOSTNAME= \
+    KC_HOSTNAME_STRICT=false \
+    KC_HOSTNAME_STRICT_BACKCHANNEL=false \
     KC_HTTP_ENABLED=true \
+    KC_PROXY=edge \
     KEYCLOAK_ADMIN=admin \
     KEYCLOAK_ADMIN_PASSWORD=P@ssw0rd \
     KEYCLOAK_IMPORT=/tmp/realm-export.json
-
-ENTRYPOINT [ "/opt/keycloak/bin/kc.sh", "start" ]
