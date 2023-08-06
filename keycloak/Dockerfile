@@ -3,7 +3,7 @@
 # File Created: 10-06-2023 05:32:03
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 06-08-2023 10:42:32
+# Last Modified: 06-08-2023 11:26:46
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021 - 2023
@@ -35,7 +35,7 @@ ENV KC_HTTPS_KEY_STORE_FILE=/opt/keycloak/conf/https.keystore \
 USER root
 RUN mv /opt/keycloak/bin/kc.sh /opt/keycloak/bin/_kc.sh
 COPY kc.sh /opt/keycloak/bin/kc.sh
-RUN keytool -genkeypair -storetype PKCS12 -keyalg RSA -keysize 2048 -dname "CN=localhost" -ext "SAN:c=DNS:localhost,IP:127.0.0.1" \
+RUN keytool -genkeypair -storetype PKCS12 -keyalg RSA -keysize 2048 -dname "CN=localhost" -ext "SAN:c=DNS:localhost,IP:127.0.0.1" -validity 36500 \
     -alias localhost -keystore "$KC_HTTPS_KEY_STORE_FILE" -storepass "$KC_HTTPS_KEY_STORE_PASSWORD" -noprompt && \
     chown keycloak:root "$KC_HTTPS_KEY_STORE_FILE" && \
     chmod 600 "$KC_HTTPS_KEY_STORE_FILE" && \
