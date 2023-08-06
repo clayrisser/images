@@ -3,7 +3,7 @@
 # File Created: 10-06-2023 05:32:03
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 06-08-2023 05:10:42
+# Last Modified: 06-08-2023 05:46:47
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021 - 2023
@@ -52,4 +52,4 @@ ENV KC_DB=postgres \
     KEYCLOAK_ADMIN_PASSWORD=P@ssw0rd \
     KEYCLOAK_IMPORT=/tmp/realm-export.json
 
-ENTRYPOINT [ "/opt/keycloak/bin/kc.sh" "start" ]
+ENTRYPOINT [ "/opt/keycloak/bin/kc.sh", "start" ]
