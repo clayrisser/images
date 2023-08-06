@@ -3,7 +3,7 @@
 # File Created: 10-06-2023 05:32:03
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 05-08-2023 15:20:48
+# Last Modified: 06-08-2023 05:10:42
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021 - 2023
@@ -22,13 +22,14 @@
 
 FROM quay.io/keycloak/keycloak:21.1.0 as builder
 
-ENV KC_HEALTH_ENABLED=true
-ENV KC_METRICS_ENABLED=true
-ENV KC_DB=postgres
+ENV KC_DB=postgres \
+    KC_HEALTH_ENABLED=true \
+    KC_METRICS_ENABLED=true \
+    KC_VAULT=file
 
 WORKDIR /opt/keycloak
 
-RUN /opt/keycloak/bin/kc.sh build --db=postgres --vault=file
+RUN /opt/keycloak/bin/kc.sh build
 
 FROM quay.io/keycloak/keycloak:21.1.0
 COPY --from=builder /opt/keycloak/ /opt/keycloak/
@@ -46,5 +47,9 @@ ENV KC_DB=postgres \
     KC_DB_URL_PORT=5432 \
     KC_DB_USERNAME=postgres \
     KC_HOSTNAME=localhost \
+    KC_HTTP_ENABLED=true \
     KEYCLOAK_ADMIN=admin \
-    KEYCLOAK_ADMIN_PASSWORD=P@ssw0rd
+    KEYCLOAK_ADMIN_PASSWORD=P@ssw0rd \
+    KEYCLOAK_IMPORT=/tmp/realm-export.json
+
+ENTRYPOINT [ "/opt/keycloak/bin/kc.sh" "start" ]
