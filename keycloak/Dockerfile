@@ -3,7 +3,7 @@
 # File Created: 10-06-2023 05:32:03
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 06-08-2023 10:17:02
+# Last Modified: 06-08-2023 10:42:32
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021 - 2023
@@ -30,13 +30,13 @@ RUN /opt/keycloak/bin/kc.sh build
 
 FROM quay.io/keycloak/keycloak:21.1.0
 COPY --from=builder /opt/keycloak/ /opt/keycloak/
-ENV KC_HTTPS_KEY_STORE_FILE=/opt/keycloak/conf/server.keystore \
+ENV KC_HTTPS_KEY_STORE_FILE=/opt/keycloak/conf/https.keystore \
     KC_HTTPS_KEY_STORE_PASSWORD=changeit
 USER root
 RUN mv /opt/keycloak/bin/kc.sh /opt/keycloak/bin/_kc.sh
 COPY kc.sh /opt/keycloak/bin/kc.sh
-RUN keytool -genkeypair -storetype PKCS12 -keyalg RSA -keysize 2048 -dname "CN=server" -ext "SAN:c=DNS:server,IP:127.0.0.1" \
-    -alias server -keystore "$KC_HTTPS_KEY_STORE_FILE" -storepass "$KC_HTTPS_KEY_STORE_PASSWORD" -noprompt && \
+RUN keytool -genkeypair -storetype PKCS12 -keyalg RSA -keysize 2048 -dname "CN=localhost" -ext "SAN:c=DNS:localhost,IP:127.0.0.1" \
+    -alias localhost -keystore "$KC_HTTPS_KEY_STORE_FILE" -storepass "$KC_HTTPS_KEY_STORE_PASSWORD" -noprompt && \
     chown keycloak:root "$KC_HTTPS_KEY_STORE_FILE" && \
     chmod 600 "$KC_HTTPS_KEY_STORE_FILE" && \
     chmod +x /opt/keycloak/bin/kc.sh
