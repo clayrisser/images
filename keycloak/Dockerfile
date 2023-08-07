@@ -3,7 +3,7 @@
 # File Created: 10-06-2023 05:32:03
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 06-08-2023 11:26:46
+# Last Modified: 07-08-2023 07:23:39
 # Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021 - 2023
@@ -31,14 +31,22 @@ RUN /opt/keycloak/bin/kc.sh build
 FROM quay.io/keycloak/keycloak:21.1.0
 COPY --from=builder /opt/keycloak/ /opt/keycloak/
 ENV KC_HTTPS_KEY_STORE_FILE=/opt/keycloak/conf/https.keystore \
-    KC_HTTPS_KEY_STORE_PASSWORD=changeit
+    KC_HTTPS_KEY_STORE_PASSWORD=changeit \
+    KC_SPI_TRUSTSTORE_FILE_FILE=/opt/keycloak/conf/ca.truststore \
+    KC_SPI_TRUSTSTORE_FILE_PASSWORD=changeit
+
 USER root
 RUN mv /opt/keycloak/bin/kc.sh /opt/keycloak/bin/_kc.sh
 COPY kc.sh /opt/keycloak/bin/kc.sh
 RUN keytool -genkeypair -storetype PKCS12 -keyalg RSA -keysize 2048 -dname "CN=localhost" -ext "SAN:c=DNS:localhost,IP:127.0.0.1" -validity 36500 \
     -alias localhost -keystore "$KC_HTTPS_KEY_STORE_FILE" -storepass "$KC_HTTPS_KEY_STORE_PASSWORD" -noprompt && \
+    keytool -exportcert -alias localhost -file /tmp/localhost.crt -keystore "$KC_HTTPS_KEY_STORE_FILE" -storepass "$KC_HTTPS_KEY_STORE_PASSWORD" -noprompt && \
+    keytool -importcert -file /tmp/localhost.crt -alias localhost -keystore "$KC_SPI_TRUSTSTORE_FILE_FILE" -storepass "$KC_SPI_TRUSTSTORE_FILE_PASSWORD" -noprompt && \
+    rm -f /tmp/localhost.crt && \
     chown keycloak:root "$KC_HTTPS_KEY_STORE_FILE" && \
+    chown keycloak:root "$KC_SPI_TRUSTSTORE_FILE_FILE" && \
     chmod 600 "$KC_HTTPS_KEY_STORE_FILE" && \
+    chmod 600 "$KC_SPI_TRUSTSTORE_FILE_FILE" && \
     chmod +x /opt/keycloak/bin/kc.sh
 USER keycloak
 ENV KC_DB=postgres \
@@ -52,6 +60,7 @@ ENV KC_DB=postgres \
     KC_HOSTNAME_STRICT_BACKCHANNEL=false \
     KC_HTTP_ENABLED=true \
     KC_PROXY=edge \
+    KC_SPI_TRUSTSTORE_FILE_HOSTNAME_VERIFICATION_POLICY=ANY \
     KEYCLOAK_ADMIN=admin \
     KEYCLOAK_ADMIN_PASSWORD=P@ssw0rd \
     KEYCLOAK_IMPORT=/tmp/realm-export.json
