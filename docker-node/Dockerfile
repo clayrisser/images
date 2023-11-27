@@ -1,12 +1,9 @@
 # File: /docker-node/Dockerfile
-# Project: ci-images
-# File Created: 15-08-2021 02:16:42
+# Project: images
+# File Created: 26-11-2023 08:09:02
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 30-06-2023 17:07:31
-# Modified By: Clay Risser <email@clayrisser.com>
-# -----
-# BitSpur (c) Copyright 2021
+# BitSpur (c) Copyright 2021 - 2023
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,7 +17,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM registry.gitlab.com/bitspur/rock8s/images/node:18.16.1
+FROM node
 
 RUN apk add --no-cache \
     docker \

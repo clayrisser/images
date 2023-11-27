@@ -3,8 +3,8 @@
 # File Created: 15-08-2021 02:20:14
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 04-08-2023 07:23:24
-# Modified By: Clay Risser <email@clayrisser.com>
+#Last Modified: Mo-11-2023 11:44:29
+#Modified By: Clay Risser
 # -----
 # BitSpur (c) Copyright 2021
 #
@@ -20,50 +20,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-export MAKEFLAGS := -j1
-
 include $(MKPM)/mkpm
-include shared.mk
+include $(MKPM)/gnu
 
-IMAGES = \
-	base \
-	base-debian \
-	debian-build \
-	debian-python \
-	docker \
-	node \
-	debian-node \
-	docker-node \
-	kube-commands \
-	kube-commands-aws \
-	kube-commands-psql \
-	loki \
-	podman \
-	postgres-age \
-	terraform \
-	kube-commands-terraform \
-	kando-openldap \
-	kube-commands-terraform-aws \
-	keycloak \
-	java
-
-.PHONY: build
-build: | $(patsubst %,%/build,$(IMAGES))
-
-.PHONY: push
-push: | $(patsubst %,%/push,$(IMAGES))
-
-.PHONY: pull
-pull: | $(patsubst %,%/pull,$(IMAGES))
-
-%/build:
-	@$(MAKE) -sC $* build ARGS=$(ARGS)
-
-%/pull:
-	@$(MAKE) -sC $* pull ARGS=$(ARGS)
-
-%/push:
-	@$(MAKE) -sC $* push ARGS=$(ARGS)
-
-%/shell:
-	@$(MAKE) -sC $* shell ARGS=$(ARGS)
+VERSION ?= 0.2.0
+BAKE_ARGS := --provenance false --push
+export REGISTRY ?= registry.gitlab.com/bitspur/rock8s/images
+include $(MKPM)/docker

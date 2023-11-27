@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "hashicorp.hcl",
+    "ms-azuretools.vscode-docker",
+    "mkhl.direnv",
+    "ms-vscode.makefile-tools",
+    "editorconfig.editorconfig",
+    "fredwangwang.vscode-hcl-format"
+  ]
+}

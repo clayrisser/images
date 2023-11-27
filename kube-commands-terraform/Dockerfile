@@ -1,12 +1,9 @@
 # File: /kube-commands-terraform/Dockerfile
-# Project: ci-images
-# File Created: 15-08-2021 02:16:42
+# Project: images
+# File Created: 26-11-2023 08:09:02
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 01-07-2023 04:15:22
-# Modified By: Clay Risser <email@clayrisser.com>
-# -----
-# BitSpur (c) Copyright 2021
+# BitSpur (c) Copyright 2021 - 2023
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,7 +17,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM registry.gitlab.com/bitspur/rock8s/images/kube-commands:0.0.1
+FROM kube-commands
 
 RUN apk add --no-cache \
     terraform

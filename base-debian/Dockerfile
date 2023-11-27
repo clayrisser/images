@@ -1,12 +1,9 @@
 # File: /base-debian/Dockerfile
-# Project: ci-images
-# File Created: 06-10-2021 14:23:56
+# Project: images
+# File Created: 26-11-2023 08:09:02
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 01-07-2023 04:28:15
-# Modified By: Clay Risser <email@clayrisser.com>
-# -----
-# BitSpur (c) Copyright 2021
+# BitSpur (c) Copyright 2021 - 2023
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

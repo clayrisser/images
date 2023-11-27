@@ -10,12 +10,7 @@
     "risserlabs",
     "yaml"
   ],
-  "psi-header.variables": [
-    [
-      "projectCreationYear",
-      "2021"
-    ]
-  ],
+  "psi-header.variables": [["projectCreationYear", "2021"]],
   "psi-header.config": {
     "author": "Clay Risser",
     "authorEmail": "email@clayrisser.com",
@@ -49,9 +44,6 @@
         " File Created: <<filecreated('DD-MM-YYYY HH:mm:ss')>>",
         " Author: <<author>> <<<authoremail>>>",
         " -----",
-        " Last Modified: <<dateformat('DD-MM-YYYY HH:mm:ss')>>",
-        " Modified By: <<author>> <<<authoremail>>>",
-        " -----",
         " <<copyrightholder>> (c) Copyright <<yeartoyear(<<projectCreationYear>>, now)>>",
         "",
         "<<licensetext>>"
@@ -70,9 +62,7 @@
       "modDate": "Last Modified:",
       "modDateFormat": "dd-MM-yyyy HH:mm:ss",
       "prefix": "#",
-      "replace": [
-        "File:"
-      ],
+      "replace": ["File:"],
       "rootDirFileName": "LICENSE",
       "suffix": ""
     }
@@ -80,22 +70,13 @@
   "psi-header.changes-tracking": {
     "autoHeader": "autoSave",
     "enforceHeader": true,
-    "include": [
-      "terraform",
-      "makefile",
-      "dockerfile"
-    ],
-    "includeGlob": [
-      "**/*.yaml",
-      "**/*.yml"
-    ],
+    "include": ["terraform", "makefile", "dockerfile"],
+    "includeGlob": ["**/*.yaml", "**/*.yml"],
     "isActive": true,
     "modAuthor": "Modified By:",
     "modDate": "Last Modified:",
     "modDateFormat": "dd-MM-yyyy hh:nn:ss",
-    "replace": [
-      "Filename:"
-    ],
+    "replace": ["Filename:"],
     "updateLicenseVariables": true
   },
   "psi-header.license-reference": {

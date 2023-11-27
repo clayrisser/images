@@ -1,12 +1,9 @@
 # File: /keycloak/Makefile
-# Project: ci-images
-# File Created: 06-10-2021 14:23:56
+# Project: images
+# File Created: 27-11-2023 10:02:35
 # Author: Clay Risser <email@clayrisser.com>
 # -----
-# Last Modified: 05-08-2023 13:54:14
-# Modified By: Clay Risser <email@clayrisser.com>
-# -----
-# BitSpur (c) Copyright 2021
+# BitSpur (c) Copyright 2021 - 2023
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,9 +19,4 @@
 
 include $(MKPM)/mkpm
 include $(MKPM)/gnu
-include $(PROJECT_ROOT)/shared.mk
-
-export NAME ?= keycloak
-export VERSION ?= 21.1.0
-
 include $(MKPM)/docker

@@ -1,10 +1,7 @@
 # File: /keycloak/Dockerfile
 # Project: images
-# File Created: 10-06-2023 05:32:03
+# File Created: 26-11-2023 08:09:02
 # Author: Clay Risser <email@clayrisser.com>
-# -----
-# Last Modified: 07-08-2023 07:23:39
-# Modified By: Clay Risser <email@clayrisser.com>
 # -----
 # BitSpur (c) Copyright 2021 - 2023
 #
