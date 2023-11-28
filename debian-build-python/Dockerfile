@@ -17,7 +17,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM python:3.12.0b4-bookworm
+ARG DEBIAN_VERSION \
+    PYTHON_VERSION
+
+FROM python:${PYTHON_VERSION}-${DEBIAN_VERSION}
 
 RUN apt-get update && apt-get install -y \
     bash \

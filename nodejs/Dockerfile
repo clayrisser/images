@@ -1,4 +1,4 @@
-# File: /java/Dockerfile
+# File: /nodejs/Dockerfile
 # Project: images
 # File Created: 26-11-2023 08:09:02
 # Author: Clay Risser <email@clayrisser.com>
@@ -17,12 +17,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM base-debian
+ARG ALPINE_VERSION \
+    NODEJS_VERSION
 
-RUN apt-get update && apt-get install -y \
-    maven \
-    gradle \
-    openjdk-17-jdk && \
-    rm -rf /var/lib/apt/lists/*
+FROM node:${NODEJS_VERSION}-alpine${ALPINE_VERSION}
 
-WORKDIR /tmp
+RUN apk add --no-cache \
+    bash \
+    build-base \
+    curl \
+    git \
+    git-lfs \
+    jq \
+    make \
+    openssl \
+    patch \
+    python3 \
+    yq
+
+RUN npm install -g \
+    pnpm

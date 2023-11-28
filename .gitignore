@@ -1,2 +1,5 @@
 # mkpm
 .mkpm/mkpm
+
+# app
+/.env

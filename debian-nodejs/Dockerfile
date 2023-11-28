@@ -1,4 +1,4 @@
-# File: /debian-node/Dockerfile
+# File: /debian-nodejs/Dockerfile
 # Project: images
 # File Created: 26-11-2023 08:09:02
 # Author: Clay Risser <email@clayrisser.com>
@@ -17,7 +17,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM node:18.16.1-bookworm
+ARG DEBIAN_VERSION \
+    NODEJS_VERSION
+
+FROM node:${NODEJS_VERSION}-${DEBIAN_VERSION}
 
 RUN apt-get update && apt-get install -y \
     bash \
@@ -36,4 +39,5 @@ RUN apt-get update && apt-get install -y \
     yq && \
     rm -rf /var/lib/apt/lists/*
 
-WORKDIR /tmp
+RUN npm install -g \
+    pnpm

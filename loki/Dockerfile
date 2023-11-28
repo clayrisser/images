@@ -17,22 +17,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM node:18.16.1-bookworm
+FROM debian-nodejs
 
 RUN apt-get update && apt-get install -y \
-    bash \
     chromium \
-    curl \
-    git \
-    git-lfs \
-    graphicsmagick \
-    jq \
-    make \
-    openssl \
-    patch \
-    rsync \
-    yq && \
+    graphicsmagick && \
     rm -rf /var/lib/apt/lists/*
-
-RUN npm install -g \
-    pnpm

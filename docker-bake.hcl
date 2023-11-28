@@ -1,22 +1,18 @@
-variable "REGISTRY" {
-  default = ""
-}
+variable "ALPINE_VERSION" {}
+variable "DEBIAN_VERSION" {}
+variable "KEYCLOAK_VERSION" {}
+variable "NODEJS_VERSION" {}
+variable "OPENJDK_VERSION" {}
+variable "OPENLDAP_VERSION" {}
+variable "PERCONA_VERSION" {}
+variable "POSTGRES_VERSION" {}
+variable "PYTHON_VERSION" {}
+variable "REGISTRY" {}
 
-variable "TAG" {
-  default = ""
-}
-
-variable "MAJOR" {
-  default = ""
-}
-
-variable "MINOR" {
-  default = ""
-}
-
-variable "PATCH" {
-  default = ""
-}
+variable "MAJOR" {}
+variable "MINOR" {}
+variable "PATCH" {}
+variable "TAG" {}
 
 group "default" {
   targets = [
@@ -24,10 +20,9 @@ group "default" {
     "base-debian",
     "debian-build",
     "debian-build-python",
-    "debian-node",
+    "debian-nodejs",
     "docker",
-    "docker-node",
-    // "java",
+    "docker-nodejs",
     "kando-openldap",
     "keycloak",
     "kube-commands",
@@ -36,10 +31,11 @@ group "default" {
     "kube-commands-terraform",
     "kube-commands-terraform-aws",
     "loki",
-    "node",
+    "nodejs",
+    "openjdk",
     "podman",
-    // "postgres-age",
-    "terraform"
+    "postgres-age",
+    "terraform",
   ]
 }
 
@@ -48,23 +44,23 @@ target "base" {
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/base:${TAG}",
-    "${REGISTRY}/base:${MAJOR}",
-    "${REGISTRY}/base:${MINOR}",
-    "${REGISTRY}/base:${PATCH}",
+    "${REGISTRY}/base:${ALPINE_VERSION}",
   ]
+  args = {
+    ALPINE_VERSION = "${ALPINE_VERSION}"
+  }
 }
 
 target "base-debian" {
-  context    = "base"
+  context    = "base-debian"
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/base-debian:${TAG}",
-    "${REGISTRY}/base-debian:${MAJOR}",
-    "${REGISTRY}/base-debian:${MINOR}",
-    "${REGISTRY}/base-debian:${PATCH}",
+    "${REGISTRY}/base-debian:${DEBIAN_VERSION}",
   ]
+  args = {
+    DEBIAN_VERSION = "${DEBIAN_VERSION}"
+  }
 }
 
 target "debian-build" {
@@ -72,11 +68,11 @@ target "debian-build" {
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/debian-build:${TAG}",
-    "${REGISTRY}/debian-build:${MAJOR}",
-    "${REGISTRY}/debian-build:${MINOR}",
-    "${REGISTRY}/debian-build:${PATCH}",
+    "${REGISTRY}/debian-build:${DEBIAN_VERSION}",
   ]
+  args = {
+    DEBIAN_VERSION = "${DEBIAN_VERSION}"
+  }
 }
 
 target "debian-build-python" {
@@ -84,23 +80,25 @@ target "debian-build-python" {
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/debian-build-python:${TAG}",
-    "${REGISTRY}/debian-build-python:${MAJOR}",
-    "${REGISTRY}/debian-build-python:${MINOR}",
-    "${REGISTRY}/debian-build-python:${PATCH}",
+    "${REGISTRY}/debian-build-python:${PYTHON_VERSION}-${DEBIAN_VERSION}",
   ]
+  args = {
+    DEBIAN_VERSION = "${DEBIAN_VERSION}"
+    PYTHON_VERSION = "${PYTHON_VERSION}"
+  }
 }
 
-target "debian-node" {
-  context    = "debian-node"
+target "debian-nodejs" {
+  context    = "debian-nodejs"
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/debian-node:${TAG}",
-    "${REGISTRY}/debian-node:${MAJOR}",
-    "${REGISTRY}/debian-node:${MINOR}",
-    "${REGISTRY}/debian-node:${PATCH}",
+    "${REGISTRY}/debian-node:${NODEJS_VERSION}-${DEBIAN_VERSION}",
   ]
+  args = {
+    DEBIAN_VERSION = "${DEBIAN_VERSION}"
+    NODEJS_VERSION = "${NODEJS_VERSION}"
+  }
 }
 
 target "docker" {
@@ -108,43 +106,22 @@ target "docker" {
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/docker:${TAG}",
-    "${REGISTRY}/docker:${MAJOR}",
-    "${REGISTRY}/docker:${MINOR}",
-    "${REGISTRY}/docker:${PATCH}",
+    "${REGISTRY}/docker:${ALPINE_VERSION}",
   ]
   contexts = {
     base = "target:base"
   }
 }
 
-target "docker-node" {
-  context    = "docker-node"
+target "docker-nodejs" {
+  context    = "docker-nodejs"
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/docker-node:${TAG}",
-    "${REGISTRY}/docker-node:${MAJOR}",
-    "${REGISTRY}/docker-node:${MINOR}",
-    "${REGISTRY}/docker-node:${PATCH}",
+    "${REGISTRY}/docker-node:${NODEJS_VERSION}-${ALPINE_VERSION}",
   ]
   contexts = {
-    node = "target:node"
-  }
-}
-
-target "java" {
-  context    = "java"
-  dockerfile = "Dockerfile"
-  platforms  = ["linux/amd64"]
-  tags = [
-    "${REGISTRY}/java:${TAG}",
-    "${REGISTRY}/java:${MAJOR}",
-    "${REGISTRY}/java:${MINOR}",
-    "${REGISTRY}/java:${PATCH}",
-  ]
-  contexts = {
-    base-debian = "target:base-debian"
+    node = "target:nodejs"
   }
 }
 
@@ -153,11 +130,11 @@ target "kando-openldap" {
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/kando-openldap:${TAG}",
-    "${REGISTRY}/kando-openldap:${MAJOR}",
-    "${REGISTRY}/kando-openldap:${MINOR}",
-    "${REGISTRY}/kando-openldap:${PATCH}",
+    "${REGISTRY}/kando-openldap:${OPENLDAP_VERSION}",
   ]
+  args = {
+    OPENLDAP_VERSION = "${OPENLDAP_VERSION}"
+  }
 }
 
 target "keycloak" {
@@ -165,11 +142,11 @@ target "keycloak" {
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/keycloak:${TAG}",
-    "${REGISTRY}/keycloak:${MAJOR}",
-    "${REGISTRY}/keycloak:${MINOR}",
-    "${REGISTRY}/keycloak:${PATCH}",
+    "${REGISTRY}/keycloak:${KEYCLOAK_VERSION}",
   ]
+  args = {
+    KEYCLOAK_VERSION = "${KEYCLOAK_VERSION}"
+  }
 }
 
 target "kube-commands" {
@@ -177,10 +154,7 @@ target "kube-commands" {
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/kube-commands:${TAG}",
-    "${REGISTRY}/kube-commands:${MAJOR}",
-    "${REGISTRY}/kube-commands:${MINOR}",
-    "${REGISTRY}/kube-commands:${PATCH}",
+    "${REGISTRY}/kube-commands:${ALPINE_VERSION}",
   ]
   contexts = {
     base = "target:base"
@@ -192,10 +166,7 @@ target "kube-commands-aws" {
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/kube-commands-aws:${TAG}",
-    "${REGISTRY}/kube-commands-aws:${MAJOR}",
-    "${REGISTRY}/kube-commands-aws:${MINOR}",
-    "${REGISTRY}/kube-commands-aws:${PATCH}",
+    "${REGISTRY}/kube-commands-aws:${ALPINE_VERSION}",
   ]
   contexts = {
     kube-commands = "target:kube-commands"
@@ -207,10 +178,7 @@ target "kube-commands-psql" {
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/kube-commands-psql:${TAG}",
-    "${REGISTRY}/kube-commands-psql:${MAJOR}",
-    "${REGISTRY}/kube-commands-psql:${MINOR}",
-    "${REGISTRY}/kube-commands-psql:${PATCH}",
+    "${REGISTRY}/kube-commands-psql:${ALPINE_VERSION}",
   ]
   contexts = {
     kube-commands = "target:kube-commands"
@@ -222,10 +190,7 @@ target "kube-commands-terraform" {
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/kube-commands-terraform:${TAG}",
-    "${REGISTRY}/kube-commands-terraform:${MAJOR}",
-    "${REGISTRY}/kube-commands-terraform:${MINOR}",
-    "${REGISTRY}/kube-commands-terraform:${PATCH}",
+    "${REGISTRY}/kube-commands-terraform:${ALPINE_VERSION}",
   ]
   contexts = {
     kube-commands = "target:kube-commands"
@@ -237,10 +202,7 @@ target "kube-commands-terraform-aws" {
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/kube-commands-terraform-aws:${TAG}",
-    "${REGISTRY}/kube-commands-terraform-aws:${MAJOR}",
-    "${REGISTRY}/kube-commands-terraform-aws:${MINOR}",
-    "${REGISTRY}/kube-commands-terraform-aws:${PATCH}",
+    "${REGISTRY}/kube-commands-terraform-aws:${ALPINE_VERSION}",
   ]
   contexts = {
     kube-commands-aws = "target:kube-commands-aws"
@@ -252,23 +214,39 @@ target "loki" {
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/loki:${TAG}",
-    "${REGISTRY}/loki:${MAJOR}",
-    "${REGISTRY}/loki:${MINOR}",
-    "${REGISTRY}/loki:${PATCH}",
+    "${REGISTRY}/loki:${NODEJS_VERSION}-${DEBIAN_VERSION}",
   ]
+  contexts = {
+    debian-nodejs = "target:debian-nodejs"
+  }
 }
 
-target "node" {
-  context    = "node"
+target "nodejs" {
+  context    = "nodejs"
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/node:${TAG}",
-    "${REGISTRY}/node:${MAJOR}",
-    "${REGISTRY}/node:${MINOR}",
-    "${REGISTRY}/node:${PATCH}",
+    "${REGISTRY}/node:${NODEJS_VERSION}-${ALPINE_VERSION}",
   ]
+  args = {
+    ALPINE_VERSION = "${ALPINE_VERSION}"
+    NODEJS_VERSION = "${NODEJS_VERSION}"
+  }
+}
+
+target "openjdk" {
+  context    = "openjdk"
+  dockerfile = "Dockerfile"
+  platforms  = ["linux/amd64"]
+  tags = [
+    "${REGISTRY}/openjdk:${OPENJDK_VERSION}-${DEBIAN_VERSION}",
+  ]
+  contexts = {
+    base-debian = "target:base-debian"
+  }
+  args = {
+    OPENJDK_VERSION = "${OPENJDK_VERSION}"
+  }
 }
 
 target "podman" {
@@ -276,10 +254,7 @@ target "podman" {
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/podman:${TAG}",
-    "${REGISTRY}/podman:${MAJOR}",
-    "${REGISTRY}/podman:${MINOR}",
-    "${REGISTRY}/podman:${PATCH}",
+    "${REGISTRY}/podman:${ALPINE_VERSION}",
   ]
   contexts = {
     base = "target:base"
@@ -291,11 +266,12 @@ target "postgres-age" {
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/postgres-age:${TAG}",
-    "${REGISTRY}/postgres-age:${MAJOR}",
-    "${REGISTRY}/postgres-age:${MINOR}",
-    "${REGISTRY}/postgres-age:${PATCH}",
+    "${REGISTRY}/postgres-age:${PERCONA_VERSION}-ppg${POSTGRES_VERSION}",
   ]
+  args = {
+    PERCONA_VERSION  = "${PERCONA_VERSION}"
+    POSTGRES_VERSION = "${POSTGRES_VERSION}"
+  }
 }
 
 target "terraform" {
@@ -303,10 +279,7 @@ target "terraform" {
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/terraform:${TAG}",
-    "${REGISTRY}/terraform:${MAJOR}",
-    "${REGISTRY}/terraform:${MINOR}",
-    "${REGISTRY}/terraform:${PATCH}",
+    "${REGISTRY}/terraform:${ALPINE_VERSION}",
   ]
   contexts = {
     base = "target:base"

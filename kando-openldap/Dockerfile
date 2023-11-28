@@ -17,7 +17,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM osixia/openldap:1.5.0
+ARG OPENLDAP_VERSION
+
+FROM registry.gitlab.com/bitspur/rock8s/docker-openldap:${OPENLDAP_VERSION}
+
+USER 0
+
+RUN apt-get update && apt-get install -y \
+    gpg && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /tmp/workdir && \
     cd /tmp/workdir && \
@@ -37,3 +45,5 @@ RUN mkdir -p /tmp/workdir && \
     apt-get autoremove -y && \
     apt-get clean autoclean && \
     rm -rf /var/lib/apt/lists/*
+
+USER 1001

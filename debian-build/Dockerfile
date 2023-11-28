@@ -17,7 +17,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM debian:12.0
+ARG DEBIAN_VERSION
+
+FROM debian:${DEBIAN_VERSION}
 
 RUN apt-get update && apt-get install -y \
     bash \

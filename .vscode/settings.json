@@ -1,10 +1,12 @@
 {
   "cSpell.words": [
+    "bitspur",
     "build",
     "dind",
     "docker",
     "healthz",
     "kubectl",
+    "mkpm",
     "psql",
     "risser",
     "risserlabs",

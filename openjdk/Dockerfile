@@ -1,4 +1,4 @@
-# File: /node/Dockerfile
+# File: /openjdk/Dockerfile
 # Project: images
 # File Created: 26-11-2023 08:09:02
 # Author: Clay Risser <email@clayrisser.com>
@@ -17,20 +17,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM node:18.16.1-alpine3.18
+FROM base-debian
 
-RUN apk add --no-cache \
-    bash \
-    build-base \
-    curl \
-    git \
-    git-lfs \
-    jq \
-    make \
-    openssl \
-    patch \
-    python3 \
-    yq
+ARG OPENJDK_VERSION
 
-RUN npm install -g \
-    pnpm
+RUN apt-get update && apt-get install -y \
+    maven \
+    gradle \
+    openjdk-${OPENJDK_VERSION}-jdk && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /tmp

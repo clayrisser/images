@@ -17,7 +17,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM percona/percona-postgresql-operator:1.3.0-ppg12-postgres-ha
+ARG PERCONA_VERSION \
+    POSTGRES_VERSION
+
+FROM percona/percona-postgresql-operator:${PERCONA_VERSION}-ppg${POSTGRES_VERSION}-postgres-ha
+
+ARG POSTGRES_VERSION
 
 USER 0
 
@@ -48,7 +53,7 @@ RUN mkdir -p /tmp/workdir && \
     cd .. && \
     git clone https://github.com/apache/age.git && \
     cd age && \
-    git checkout AGE_PG12.1.0_ALPHA && \
+    git checkout release/PG${POSTGRES_VERSION}/1.4.0 && \
     make PG_CONFIG=$(which pg_config) install && \
     cd .. && \
     cd bison-3.3 && make uninstall && cd .. && \
