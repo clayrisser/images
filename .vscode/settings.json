@@ -1,17 +1,4 @@
 {
-  "cSpell.words": [
-    "bitspur",
-    "build",
-    "dind",
-    "docker",
-    "healthz",
-    "kubectl",
-    "mkpm",
-    "psql",
-    "risser",
-    "risserlabs",
-    "yaml"
-  ],
   "psi-header.variables": [["projectCreationYear", "2021"]],
   "psi-header.config": {
     "author": "Clay Risser",

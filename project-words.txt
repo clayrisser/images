@@ -1,0 +1,17 @@
+bitspur
+build
+cloc
+coreutils
+dind
+docker
+gnumake
+gnused
+healthz
+kubectl
+mkpm
+nixpkgs
+psql
+risser
+risserlabs
+stdenv
+yaml

@@ -50,4 +50,7 @@ RUN curl -Lo kops https://github.com/kubernetes/kops/releases/download/$( \
     )/kops-linux-amd64 && \
     chmod +x kops && \
     mv kops /usr/local/bin/kops
+RUN curl -Lo /usr/local/bin/kanister-kopia \
+    https://gitlab.com/bitspur/rock8s/kanister-kopia/-/raw/main/kanister-kopia.sh && \
+    chmod +x /usr/local/bin/kanister-kopia
 RUN rm -rf /tmp/* /tmp/.* 2>&1 | true
