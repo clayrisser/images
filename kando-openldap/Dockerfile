@@ -38,6 +38,9 @@ RUN mkdir -p /tmp/workdir && \
     tar -xzvf kanister.tar.gz && \
     mv kando /usr/bin && \
     mv kanctl /usr/bin && \
+    curl -Lo /usr/local/bin/kanister-kopia \
+    https://gitlab.com/bitspur/rock8s/kanister-kopia/-/raw/main/kanister-kopia.sh && \
+    chmod +x /usr/local/bin/kanister-kopia && \
     cd .. && \
     rm -rf workdir && \
     apt-get remove -y \

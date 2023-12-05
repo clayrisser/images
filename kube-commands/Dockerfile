@@ -25,11 +25,11 @@ ENV PATH="${PATH}:/root/.krew/bin"
 
 RUN curl -LO https://dl.k8s.io/release/v1.20.0/bin/linux/amd64/kubectl && \
     install kubectl /usr/local/bin && \
-    ln -s /usr/local/bin/kubectl /usr/local/bin/k
-RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 && \
+    ln -s /usr/local/bin/kubectl /usr/local/bin/k && \
+    curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 && \
     chmod 700 get_helm.sh && \
-    ./get_helm.sh
-RUN ( \
+    ./get_helm.sh && \
+    ( \
     set -x; cd "$(mktemp -d)" && \
     OS="$(uname | tr '[:upper:]' '[:lower:]')" && \
     ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" && \
@@ -40,17 +40,17 @@ RUN ( \
     ) && \
     export PATH="${PATH}:${HOME}/.krew/bin" && \
     kubectl krew update && \
-    kubectl krew upgrade
-RUN export PATH="${PATH}:${HOME}/.krew/bin" && \
+    kubectl krew upgrade && \
+    export PATH="${PATH}:${HOME}/.krew/bin" && \
     kubectl krew install ctx && \
-    kubectl krew install ns
-RUN curl -Lo kops https://github.com/kubernetes/kops/releases/download/$( \
+    kubectl krew install ns && \
+    curl -Lo kops https://github.com/kubernetes/kops/releases/download/$( \
     curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | \
     grep tag_name | cut -d '"' -f 4 \
     )/kops-linux-amd64 && \
     chmod +x kops && \
-    mv kops /usr/local/bin/kops
-RUN curl -Lo /usr/local/bin/kanister-kopia \
+    mv kops /usr/local/bin/kops && \
+    curl -Lo /usr/local/bin/kanister-kopia \
     https://gitlab.com/bitspur/rock8s/kanister-kopia/-/raw/main/kanister-kopia.sh && \
-    chmod +x /usr/local/bin/kanister-kopia
-RUN rm -rf /tmp/* /tmp/.* 2>&1 | true
+    chmod +x /usr/local/bin/kanister-kopia && \
+    rm -rf /tmp/* /tmp/.* 2>&1 | true
