@@ -23,7 +23,8 @@ group "default" {
     "debian-nodejs",
     "docker",
     "docker-nodejs",
-    "kando-openldap",
+    "kanukopia",
+    "kanukopia-openldap",
     "keycloak",
     "kube-commands",
     "kube-commands-aws",
@@ -128,17 +129,30 @@ target "docker-nodejs" {
     "${REGISTRY}/docker-node:${NODEJS_VERSION}-${ALPINE_VERSION}",
   ]
   contexts = {
-    node = "target:nodejs"
+    nodejs = "target:nodejs"
   }
 }
 
-target "kando-openldap" {
-  context    = "kando-openldap"
+target "kanukopia" {
+  context    = "kanukopia"
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/kando-openldap:latest",
-    "${REGISTRY}/kando-openldap:${OPENLDAP_VERSION}",
+    "${REGISTRY}/kanukopia:latest",
+    "${REGISTRY}/kanukopia:${OPENLDAP_VERSION}",
+  ]
+  contexts = {
+    base-debian = "target:base-debian"
+  }
+}
+
+target "kanukopia-openldap" {
+  context    = "kanukopia-openldap"
+  dockerfile = "Dockerfile"
+  platforms  = ["linux/amd64"]
+  tags = [
+    "${REGISTRY}/kanukopia-openldap:latest",
+    "${REGISTRY}/kanukopia-openldap:${OPENLDAP_VERSION}",
   ]
   args = {
     OPENLDAP_VERSION = "${OPENLDAP_VERSION}"

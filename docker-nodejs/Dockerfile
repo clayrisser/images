@@ -1,4 +1,4 @@
-# File: /docker-node/Dockerfile
+# File: /docker-nodejs/Dockerfile
 # Project: images
 # File Created: 26-11-2023 08:09:02
 # Author: Clay Risser <email@clayrisser.com>
@@ -17,7 +17,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM node
+FROM nodejs
 
 RUN apk add --no-cache \
     docker \

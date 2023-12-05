@@ -50,7 +50,7 @@ RUN curl -LO https://dl.k8s.io/release/v1.20.0/bin/linux/amd64/kubectl && \
     )/kops-linux-amd64 && \
     chmod +x kops && \
     mv kops /usr/local/bin/kops && \
-    curl -Lo /usr/local/bin/kanister-kopia \
-    https://gitlab.com/bitspur/rock8s/kanister-kopia/-/raw/main/kanister-kopia.sh && \
-    chmod +x /usr/local/bin/kanister-kopia && \
+    curl -Lo /usr/local/bin/kanukopia \
+    https://gitlab.com/bitspur/rock8s/kanukopia/-/raw/main/kanukopia.sh && \
+    chmod +x /usr/local/bin/kanukopia && \
     rm -rf /tmp/* /tmp/.* 2>&1 | true
