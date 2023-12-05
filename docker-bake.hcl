@@ -139,7 +139,7 @@ target "kanukopia" {
   platforms  = ["linux/amd64"]
   tags = [
     "${REGISTRY}/kanukopia:latest",
-    "${REGISTRY}/kanukopia:${OPENLDAP_VERSION}",
+    "${REGISTRY}/kanukopia:${DEBIAN_VERSION}",
   ]
   contexts = {
     base-debian = "target:base-debian"

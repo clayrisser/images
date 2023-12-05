@@ -25,10 +25,12 @@ RUN apt-get update && apt-get install -y \
     curl -s https://kopia.io/signing-key | gpg --dearmor -o /etc/apt/keyrings/kopia-keyring.gpg && \
     echo "deb [signed-by=/etc/apt/keyrings/kopia-keyring.gpg] http://packages.kopia.io/apt/ stable main" | \
     tee /etc/apt/sources.list.d/kopia.list && \
-    apt-get update -y && \
-    apt-get install -y \
+    apt-get update && apt-get install -y \
     jq \
     kopia && \
+    curl -LO https://dl.k8s.io/release/v1.20.0/bin/linux/amd64/kubectl && \
+    install kubectl /usr/local/bin && \
+    ln -s /usr/local/bin/kubectl /usr/local/bin/k && \
     curl -L -o kanister.tar.gz https://github.com/kanisterio/kanister/releases/download/0.93.0/kanister_0.93.0_linux_amd64.tar.gz && \
     tar -xzvf kanister.tar.gz && \
     mv kando /usr/bin && \
@@ -37,7 +39,6 @@ RUN apt-get update && apt-get install -y \
     https://gitlab.com/bitspur/rock8s/kanukopia/-/raw/main/kanukopia.sh && \
     chmod +x /usr/local/bin/kanukopia && \
     apt-get autoremove -y && \
-    apt-get clean autoclean && \
     rm -rf /var/lib/apt/lists/*
 
 USER 1001
