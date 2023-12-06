@@ -18,6 +18,7 @@ group "default" {
   targets = [
     "base",
     "base-debian",
+    "build-kube-commands",
     "debian-build",
     "debian-build-python",
     "debian-nodejs",
@@ -63,6 +64,19 @@ target "base-debian" {
   ]
   args = {
     DEBIAN_VERSION = "${DEBIAN_VERSION}"
+  }
+}
+
+target "build-kube-commands" {
+  context    = "build-kube-commands"
+  dockerfile = "Dockerfile"
+  platforms  = ["linux/amd64"]
+  tags = [
+    "${REGISTRY}/build-kube-commands:${TAG}",
+    "${REGISTRY}/build-kube-commands:${ALPINE_VERSION}",
+  ]
+  contexts = {
+    base = "target:base"
   }
 }
 
