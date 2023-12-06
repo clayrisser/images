@@ -17,28 +17,33 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM base-debian
+ARG DEBIAN_VERSION
 
-RUN apt-get update && apt-get install -y \
-    gpg && \
-    mkdir -p /etc/apt/keyrings && \
-    curl -s https://kopia.io/signing-key | gpg --dearmor -o /etc/apt/keyrings/kopia-keyring.gpg && \
-    echo "deb [signed-by=/etc/apt/keyrings/kopia-keyring.gpg] http://packages.kopia.io/apt/ stable main" | \
-    tee /etc/apt/sources.list.d/kopia.list && \
+FROM debian:${DEBIAN_VERSION}-slim
+
+ARG KANISTER_VERSION
+ARG KOPIA_VERSION
+ARG KUBECTL_VERSION
+
+RUN cd /tmp && \
     apt-get update && apt-get install -y \
     jq \
-    kopia && \
-    curl -LO https://dl.k8s.io/release/v1.20.0/bin/linux/amd64/kubectl && \
-    install kubectl /usr/local/bin && \
+    curl && \
+    curl -Lo kopia.tar.gz https://github.com/kopia/kopia/releases/download/v${KOPIA_VERSION}/kopia-${KOPIA_VERSION}-linux-x64.tar.gz && \
+    tar -xzvf kopia.tar.gz && \
+    mv kopia-${KOPIA_VERSION}-linux-x64/kopia /usr/local/bin && \
+    curl -LO https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl && \
+    mv kubectl /usr/local/bin && \
+    chmod +x /usr/local/bin/kubectl && \
     ln -s /usr/local/bin/kubectl /usr/local/bin/k && \
-    curl -L -o kanister.tar.gz https://github.com/kanisterio/kanister/releases/download/0.93.0/kanister_0.93.0_linux_amd64.tar.gz && \
+    curl -L -o kanister.tar.gz https://github.com/kanisterio/kanister/releases/download/${KANISTER_VERSION}/kanister_${KANISTER_VERSION}_linux_amd64.tar.gz && \
     tar -xzvf kanister.tar.gz && \
-    mv kando /usr/bin && \
-    mv kanctl /usr/bin && \
+    mv kando /usr/local/bin && \
+    mv kanctl /usr/local/bin && \
     curl -Lo /usr/local/bin/kanukopia \
     https://gitlab.com/bitspur/rock8s/kanukopia/-/raw/main/kanukopia.sh && \
     chmod +x /usr/local/bin/kanukopia && \
+    apt-get remove -y \
+    curl && \
     apt-get autoremove -y && \
-    rm -rf /var/lib/apt/lists/*
-
-USER 1001
+    rm -rf /tmp/* /var/lib/apt/lists/*

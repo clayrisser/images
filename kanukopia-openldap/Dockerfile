@@ -50,7 +50,8 @@ RUN apt-get update && apt-get install -y \
     cd .. && \
     rm -rf workdir && \
     apt-get remove -y \
-    curl && \
+    curl \
+    gpg && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
 

@@ -20,8 +20,9 @@
 FROM kube-commands
 
 RUN apk add --no-cache \
-    aws-cli
-
-RUN curl -L https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v0.5.7/aws-iam-authenticator_0.5.7_linux_amd64 \
+    aws-cli \
+    curl && \
+    curl -L https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v0.5.7/aws-iam-authenticator_0.5.7_linux_amd64 \
     -o /usr/local/bin/aws-iam-authenticator && \
-    chmod +x /usr/local/bin/aws-iam-authenticator
+    chmod +x /usr/local/bin/aws-iam-authenticator && \
+    apk del curl

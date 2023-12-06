@@ -17,38 +17,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM base
+ARG ALPINE_VERSION
 
-ENV PATH="${PATH}:/root/.krew/bin"
+FROM alpine:${ALPINE_VERSION}
 
-RUN curl -LO https://dl.k8s.io/release/v1.20.0/bin/linux/amd64/kubectl && \
-    install kubectl /usr/local/bin && \
+RUN cd /tmp && \
+    apk add --no-cache \
+    bash \
+    curl \
+    jq \
+    openssl && \
+    curl -LO https://dl.k8s.io/release/v1.20.0/bin/linux/amd64/kubectl && \
+    mv kubectl /usr/local/bin && \
+    chmod +x /usr/local/bin/kubectl && \
     ln -s /usr/local/bin/kubectl /usr/local/bin/k && \
     curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 && \
     chmod 700 get_helm.sh && \
     ./get_helm.sh && \
-    ( \
-    set -x; cd "$(mktemp -d)" && \
-    OS="$(uname | tr '[:upper:]' '[:lower:]')" && \
-    ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" && \
-    KREW="krew-${OS}_${ARCH}" && \
-    curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" && \
-    tar zxvf "${KREW}.tar.gz" && \
-    ./"${KREW}" install krew \
-    ) && \
-    export PATH="${PATH}:${HOME}/.krew/bin" && \
-    kubectl krew update && \
-    kubectl krew upgrade && \
-    export PATH="${PATH}:${HOME}/.krew/bin" && \
-    kubectl krew install ctx && \
-    kubectl krew install ns && \
-    curl -Lo kops https://github.com/kubernetes/kops/releases/download/$( \
-    curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | \
-    grep tag_name | cut -d '"' -f 4 \
-    )/kops-linux-amd64 && \
-    chmod +x kops && \
-    mv kops /usr/local/bin/kops && \
-    curl -Lo /usr/local/bin/kanukopia \
-    https://gitlab.com/bitspur/rock8s/kanukopia/-/raw/main/kanukopia.sh && \
-    chmod +x /usr/local/bin/kanukopia && \
-    rm -rf /tmp/* /tmp/.* 2>&1 | true
+    apk del bash curl && \
+    rm -rf /tmp/*
