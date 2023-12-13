@@ -26,6 +26,7 @@ group "default" {
     "docker-nodejs",
     "kanukopia",
     "kanukopia-openldap",
+    "kanukopia-postgres",
     "keycloak",
     "kube-commands",
     "kube-commands-aws",
@@ -174,6 +175,20 @@ target "kanukopia-openldap" {
   ]
   args = {
     OPENLDAP_VERSION = "${OPENLDAP_VERSION}"
+  }
+}
+
+target "kanukopia-postgres" {
+  context    = "kanukopia-postgres"
+  dockerfile = "Dockerfile"
+  platforms  = ["linux/amd64"]
+  tags = [
+    "${REGISTRY}/kanukopia-postgres:${TAG}",
+    "${REGISTRY}/kanukopia-postgres:${KANISTER_VERSION}",
+    "${REGISTRY}/kanukopia-postgres:${KANISTER_VERSION}-${DEBIAN_VERSION}",
+  ]
+  contexts = {
+    kanukopia = "target:kanukopia"
   }
 }
 
