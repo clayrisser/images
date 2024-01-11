@@ -113,8 +113,8 @@ target "debian-nodejs" {
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/debian-node:${TAG}",
-    "${REGISTRY}/debian-node:${NODEJS_VERSION}-${DEBIAN_VERSION}",
+    "${REGISTRY}/debian-nodejs:${TAG}",
+    "${REGISTRY}/debian-nodejs:${NODEJS_VERSION}-${DEBIAN_VERSION}",
   ]
   args = {
     DEBIAN_VERSION = "${DEBIAN_VERSION}"
@@ -140,8 +140,8 @@ target "docker-nodejs" {
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/docker-node:${TAG}",
-    "${REGISTRY}/docker-node:${NODEJS_VERSION}-${ALPINE_VERSION}",
+    "${REGISTRY}/docker-nodejs:${TAG}",
+    "${REGISTRY}/docker-nodejs:${NODEJS_VERSION}-${ALPINE_VERSION}",
   ]
   contexts = {
     nodejs = "target:nodejs"
@@ -288,8 +288,8 @@ target "nodejs" {
   dockerfile = "Dockerfile"
   platforms  = ["linux/amd64"]
   tags = [
-    "${REGISTRY}/node:${TAG}",
-    "${REGISTRY}/node:${NODEJS_VERSION}-${ALPINE_VERSION}",
+    "${REGISTRY}/nodejs:${TAG}",
+    "${REGISTRY}/nodejs:${NODEJS_VERSION}-${ALPINE_VERSION}",
   ]
   args = {
     ALPINE_VERSION = "${ALPINE_VERSION}"
