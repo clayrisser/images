@@ -30,6 +30,7 @@ group "default" {
     "keycloak",
     "kube-commands",
     "kube-commands-aws",
+    "kube-commands-mysql",
     "kube-commands-psql",
     "kube-commands-terraform",
     "kube-commands-terraform-aws",
@@ -225,6 +226,19 @@ target "kube-commands-aws" {
   tags = [
     "${REGISTRY}/kube-commands-aws:${TAG}",
     "${REGISTRY}/kube-commands-aws:${ALPINE_VERSION}",
+  ]
+  contexts = {
+    kube-commands = "target:kube-commands"
+  }
+}
+
+target "kube-commands-mysql" {
+  context    = "kube-commands-mysql"
+  dockerfile = "Dockerfile"
+  platforms  = ["linux/amd64"]
+  tags = [
+    "${REGISTRY}/kube-commands-mysql:${TAG}",
+    "${REGISTRY}/kube-commands-mysql:${ALPINE_VERSION}",
   ]
   contexts = {
     kube-commands = "target:kube-commands"
